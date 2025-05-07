@@ -50,22 +50,14 @@ function Get-DecryptedSecret {
     return Decrypt-Secret -Encrypted $enc -Key $key
 }
 
-# Decrypt secrets at runtime with error handling
-try {
-    $anydeskUrl      = Get-DecryptedSecret $anydeskUrlEnc
-    $anydeskPassword = Get-DecryptedSecret $anydeskPasswordEnc
-    $telegramBotToken= Get-DecryptedSecret $telegramBotTokenEnc
-    $telegramChatId  = Get-DecryptedSecret $telegramChatIdEnc
-    $vcredistUrl     = Get-DecryptedSecret $vcredistUrlEnc
-    $vboxUrl         = Get-DecryptedSecret $vboxUrlEnc
-    $vboxExtUrl      = Get-DecryptedSecret $vboxExtUrlEnc
-} catch {
-    Write-Host "`n[ERROR] Failed to decrypt secrets. Wrong password or corrupted data." -ForegroundColor Red
-    Write-Host "Details: $($_.Exception.Message)" -ForegroundColor Red
-    Write-Host "`nPress Enter to exit..."
-    Read-Host
-    exit 1
-}
+# Decrypt secrets at runtime
+$anydeskUrl      = Get-DecryptedSecret $anydeskUrlEnc
+$anydeskPassword = Get-DecryptedSecret $anydeskPasswordEnc
+$telegramBotToken= Get-DecryptedSecret $telegramBotTokenEnc
+$telegramChatId  = Get-DecryptedSecret $telegramChatIdEnc
+$vcredistUrl     = Get-DecryptedSecret $vcredistUrlEnc
+$vboxUrl         = Get-DecryptedSecret $vboxUrlEnc
+$vboxExtUrl      = Get-DecryptedSecret $vboxExtUrlEnc
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -618,6 +610,8 @@ function Apply-RegFixes {
 
     Write-Host "[✓] Registry fixes applied."
 }
+
+
 
 # =========================
 #      FIXES SUBMENU
