@@ -618,7 +618,7 @@ function Apply-RegFixes {
 # =========================
 
 function Show-FixesMenu {
-    Clear-Host
+#    Clear-Host
     Write-Host "========== Fixes & Configuration ==========" -ForegroundColor Cyan
     Write-Host "[1] Set Bulgaria Locale/Time/Keyboard"
     Write-Host "[2] Set Power Settings to Never Sleep/Standby/Spin Down"
@@ -678,8 +678,8 @@ function Fixes-Menu-Loop {
 function Show-Menu {
     Clear-Host
     Write-Host "========== Remote Tool Setup ==========" -ForegroundColor Cyan
-    Write-Host "[1] Install AnyDesk"
-    Write-Host "[2] Fixes & Configuration"
+    Write-Host "[1] Fixes & Configuration"
+    Write-Host "[2] Install AnyDesk"
     Write-Host "[3] Scan Network for Used IP Addresses"
     Write-Host "[4] Send Custom Telegram Message"
     Write-Host "[5] Install VirtualBox (vcredist, VirtualBox, Extension Pack)"
