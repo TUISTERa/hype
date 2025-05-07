@@ -92,35 +92,40 @@ function Set-BulgariaLocaleAndTime {
 
     Write-Host "[*] Setting keyboard layouts: Bulgarian Traditional Phonetic and US..."
 
-    # Remove all language lists and set only what we want
-    $langList = @()
-
-    # Bulgarian with only Traditional Phonetic
-    $bg = New-WinUserLanguageList bg-BG
-    $bg[0].InputMethodTips.Clear()
-    $bg[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
-    $langList += $bg[0]
-
-    # US English with only US layout
-    $us = New-WinUserLanguageList en-US
-    $us[0].InputMethodTips.Clear()
-    $us[0].InputMethodTips.Add("0409:00000409") # US
-    $langList += $us[0]
-
-    Set-WinUserLanguageList $langList -Force
-
-    # Remove any other installed input methods for bg-BG
-    $regPath = "HKCU:\Keyboard Layout\Preload"
-    $preloads = Get-ItemProperty -Path $regPath | Select-Object -Property * | Get-Member -MemberType NoteProperty | Where-Object { $_.Name -match '^\d+$' }
-    foreach ($preload in $preloads) {
-        $value = (Get-ItemProperty -Path $regPath).$($preload.Name)
-        if ($value -eq "00000402") {
-            # Remove Bulgarian Typewriter if present
-            Remove-ItemProperty -Path $regPath -Name $preload.Name -ErrorAction SilentlyContinue
-        }
+    # Create Bulgarian with only Traditional Phonetic
+    $bgList = New-WinUserLanguageList bg-BG
+    if ($bgList.Count -ge 1) {
+        $bgList[0].InputMethodTips.Clear()
+        $bgList[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
+    } else {
+        Write-Host "[!] Could not create Bulgarian language list."
+        return
     }
 
+    # Create US English with only US layout
+    $usList = New-WinUserLanguageList en-US
+    if ($usList.Count -ge 1) {
+        $usList[0].InputMethodTips.Clear()
+        $usList[0].InputMethodTips.Add("0409:00000409") # US
+    } else {
+        Write-Host "[!] Could not create US English language list."
+        return
+    }
+
+    # Combine into a single list
+    $langList = @($bgList[0], $usList[0])
+    Set-WinUserLanguageList $langList -Force
+
     Write-Host "[*] Syncing system time with NTP server..."
+    try {
+        w32tm /resync | Out-Null
+        Write-Host "[✓] Time synchronized."
+    } catch {
+        Write-Host "[!] Failed to sync time: $_"
+    }
+}
+
+Write-Host "[*] Syncing system time with NTP server..."
     try {
         w32tm /resync | Out-Null
         Write-Host "[✓] Time synchronized."
