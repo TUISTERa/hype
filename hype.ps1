@@ -40,6 +40,11 @@ $debugMode = $false
 # =========================
 #   PASSWORD PROMPT & DECRYPT
 # =========================
+Write-Host "========================================="
+Write-Host " Welcome to the Remote Tool Setup Script"
+Write-Host "  For support or questions, contact IT. v1.0.1 "
+Write-Host "=========================================" -ForegroundColor Cyan
+
 
 # Prompt for password at script start
 $password = Read-Host "Enter script password" -AsSecureString
