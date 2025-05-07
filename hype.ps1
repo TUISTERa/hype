@@ -83,7 +83,7 @@ function Get-AnyDeskPassword {
 }
 
 function Set-BulgariaLocaleAndTime {
-    Write-Host "[*] Setting region to Bulgaria  (BG)..."
+    Write-Host "[*] Setting region to Bulgaria (BG)..."
     Set-WinSystemLocale -SystemLocale bg-BG
     Set-Culture bg-BG
 
@@ -91,9 +91,29 @@ function Set-BulgariaLocaleAndTime {
     Set-TimeZone -Id "FLE Standard Time"
 
     Write-Host "[*] Setting keyboard layouts: Bulgarian Traditional Phonetic and US..."
-    $langList = New-WinUserLanguageList bg-BG
-    $langList[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
-    $langList.Add((New-WinUserLanguageList en-US)[0]) # US Keyboard
+
+    # Create Bulgarian with only Traditional Phonetic
+    $bgList = New-WinUserLanguageList bg-BG
+    if ($bgList.Count -ge 1) {
+        $bgList[0].InputMethodTips.Clear()
+        $bgList[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
+    } else {
+        Write-Host "[!] Could not create Bulgarian language list."
+        return
+    }
+
+    # Create US English with only US layout
+    $usList = New-WinUserLanguageList en-US
+    if ($usList.Count -ge 1) {
+        $usList[0].InputMethodTips.Clear()
+        $usList[0].InputMethodTips.Add("0409:00000409") # US
+    } else {
+        Write-Host "[!] Could not create US English language list."
+        return
+    }
+
+    # Combine into a single list
+    $langList = @($bgList[0], $usList[0])
     Set-WinUserLanguageList $langList -Force
 
     Write-Host "[*] Syncing system time with NTP server..."
