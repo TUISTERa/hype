@@ -96,7 +96,7 @@ function Set-BulgariaLocaleAndTime {
     $bgList = New-WinUserLanguageList bg-BG
     if ($bgList.Count -ge 1) {
         $bgList[0].InputMethodTips.Clear()
-        $bgList[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
+        $bgList[0].InputMethodTips.Add("0402:00040402") # Bulgarian Traditional Phonetic
     } else {
         Write-Host "[!] Could not create Bulgarian language list."
         return
