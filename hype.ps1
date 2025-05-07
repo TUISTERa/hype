@@ -676,8 +676,8 @@ function Fixes-Menu-Loop {
 # =========================
 
 function Show-Menu {
-    Clear-Host
-    Write-Host "========== Remote Tool Setup v1 ==========" -ForegroundColor Cyan
+#    Clear-Host
+    Write-Host "========== Remote Tool Setup v1.0.1 ==========" -ForegroundColor Cyan
     Write-Host "[1] Fixes & Configuration"
     Write-Host "[2] Install AnyDesk"
     Write-Host "[3] Scan Network for Used IP Addresses"
