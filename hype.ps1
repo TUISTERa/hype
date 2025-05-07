@@ -1,18 +1,18 @@
-
 # =========================
-#      CONFIG (ENCRYPTED)
+#      CONFIG (PLAINTEXT)
 # =========================
 
-# -- Paste your encrypted values here --
-$anydeskUrl = "76492d1116743f0423413b16050a5345MgB8AFoAbwB3AFkAdABjAGwAcgBIADkAMQBaAEgATgB1ADEAUgArAGQAQQBWAFEAPQA9AHwAZQAxAGIAMQA2AGMAZQBmADQANgBjAGEAOQA0AGYANgBhAGMAMQA0ADUAZABjADEAMAA0ADEAYQA5ADMAYQAyADUAMgAxADIANQAyADAAMwA2ADAAYQBmADQAYgA5ADAAYgA1AGQANQA1ADQAOQAyADMAYgA1ADgAMABlADcAZAA2AGYAMgBiADkANwAzADEAMgBlADMAOAA1ADMAYwA3ADEAYwA4ADAAYwBjADYAMgBkADUAYwBhAGQAMAAyAGQAZQA5ADQANgA1AGIAYQA2AGUAMQA2ADMAMgA1ADAANgBlADMAMwA3ADcANgBjAGEANABhAGYAYgBlADQAYgBlAGEANAA5ADkANAA1ADgAYgAwAGIAYQBjADAAYgA1AGYAZQA5AGQAMQAyADkAOQA3ADYANQAwADIAYQA0AGQAMgA="
-$anydeskPassword = "76492d1116743f0423413b16050a5345MgB8AFYAQQBEAGkAUQBpAGMAMwBBAGwAaQBOAEgAUgA5AHQAbQBFADQAcAA3AHcAPQA9AHwAMwAxADQANwBiADYAMgBmADEAZgA4AGIAMQBhADMAYgA1ADMANABmADQAMAAwADcAMwBhAGEAOQAzAGQANgBhAGQAYQBhAGIANABhADEAYwAyAGYAMQA2AGQAZAAwADAAZQBiAGQAZABkADQAMgBjADcANQAwADUAMwA0AGIANAA="
-$telegramBotToken = "76492d1116743f0423413b16050a5345MgB8AGcAeQBrAEcANwBYAHIAVwBHAEoAWgA2AFIAWQBHAHcAbQAvADAAMABoAHcAPQA9AHwAZQAyADUAZQAxAGUAYwAwADQAZgA4ADgAMQBkAGUAYQAzADkANgBlADAAZQAzADAANwAyADAAMgA2ADMAMABkADQAMgAyAGYAOABlADkAZAAzADcANABjAGIAZQBjADkANgBhADcANQA4AGQANgAzADcAMAAzAGYAZgA4AGEAYwA1ADgANgA1AGEAZQA4AGIAMgBmADQAMABhADcAMwA0ADMAYgA1ADcAYwAzAGQANQBlAGYAYgA5ADkAMgAzAGYAZAA2AGMANwAwADYAYQAxADMANgA0ADMAMgBiAGMANQA3AGIANQA1ADYAYwAwADIAYQA2AGUANAAxADQAZAAxADMANAA5ADIANQA0ADgAZAA0ADkANABiAGMANABlADAAOAAzADQAOQBjADEAOAA0ADQAZQAyADUAMgBiAGUAMwA4AGIANwBhADAANgBhAGUANgA1ADMAMQA2AGYAZgA5ADEANAAwAGEAMgA2AGUANQA0ADkAMwBmADcANwA0ADIA"
-$telegramChatId = "76492d1116743f0423413b16050a5345MgB8AGgAOQAwAHEAdABNAFAAWgB6ADEAZgBRAFQAegBYAGIAMQBMAEgAYQA2AFEAPQA9AHwANgA4AGUAMgA3AGQAYgA5AGMAYwA4AGYANQBjADQAYQA5ADUAMABmADcANgAxAGIAYgA4ADIANQBjADAAMgBmADQAOAA3AGUAMgAzADYAZABmADMANwA4AGMAZABiAGMAYQBiADEAMgBmADAANgBjAGYAOQA0AGIAYQA2ADUAMgA="
-$vcredistUrl = "76492d1116743f0423413b16050a5345MgB8AHAAawBJAGQATABtADEAMgBGAGsASgBMAFkASgB5AEUARQBNAHEAYQBGAHcAPQA9AHwAZgA1ADMANwBlADgAMQAzADYAYQBlAGYAYwA5ADMAZQA5ADkANABmADgAOABhAGQANwBkADMAOQBiAGYANQA4ADkAYwBiAGQAOAAzADkAMAA0ADkAOAAyADMAYwAxADEAMQA1AGUAMAAxADYAOQA1AGYAZgAwAGMAOABmADUAMgA0ADQANQA5ADYAYgBjAGMAZQA3ADAANgBhADYAYQBjADkAYgAzAGQANAA2AGIAYwAyADUAYQA5AGIAYwBhADAAZgAxADAAOABhAGYANABkAGUAMwBlADAANgAyADMANQBlAGMAZABiADYANwA5ADIAMQA3AGUAYwBlAGMANAA0AGEAMgAwAGQAZQBmAGQANwA2ADcAMAAxADIAYgAzADYAOAAxADIAYQBhADYAYQAzAGMAMABmADEAOAAxAGIAYwA="
-$vboxUrl = "76492d1116743f0423413b16050a5345MgB8AHoAWgBqAEoAbgAwADMAMgAzAFkAMwBqAHAARwBYAEYAQwBBAGoAVABFAEEAPQA9AHwAOQA4ADkAYQAzADEAMwBjAGEAMQA2ADgAMgBhADYAMgAwADgAMgA1ADEANAAxADUAZgAyAGQAZQA2ADgAOQA4ADMANgBkADIAYQA0AGIAMgA4AGQAYwA2ADAANABiADEAYwA1AGYAMQAyAGUAYgAwADIANQBhADgAMQA0ADQAZgBlADUANQBkADUAMQAyADIAMwAxAGMAMAAzADYAZQA3ADcAYgAzAGEANgA2ADgAYwBjAGYAZQBjADgANQAwAGQAZgBiADgAMwBmAGUAZQA3AGUAYgBkAGYAOQA0ADEAOQA4ADMAZgBjADMAMABhADIAYQAyADYAZAA3ADgAMAA1ADgAOQA5AGIAZQBkADIAZQAxAGQAMgAwADgANgA0AGIAZQA3ADYAMwBmADQAMwA4ADgANQA1ADYAZQAzAGEAMQA="
-$vboxExtUrl = "76492d1116743f0423413b16050a5345MgB8AFIARQBEAGgAagBtAHIAUQBXAGMAUwBtAFoAaQBVAEcATgAxAEoASQA5AGcAPQA9AHwANwBkAGYANQA1AGQAMQA1ADkAYQBkADUAMAAyAGEAZABkAGEANgAzADYAYwBkADYAMgBiADYAZAA0ADIAYgAzAGYANgBmAGIAMAA2AGUAYQBmADYAMABiADkAMwBjADcAMAA0AGYANAA5ADIANgA3ADUAMgAwADkAOAAzAGEAMAAyADgANAA0ADQAOQBiAGYAMgAwADAANwBiADYAMwA4AGEAZAA1AGIAYgAxADkAMQAwAGQAZgBhADIAYQA2AGQANwBhAGYANwBlADgANwBmADUAMgAyADcAZgA0ADEAMQA0ADYAMwAzADUAMgBhADIAYwBlAGUAMgAwADcAOQBmADcAYgBjADEAYwA2AGQAZABhADgAZgBiADgAMgA4AGYAZQBkADMANQAzADgAZgA5ADYAYgAzADUAMAA3ADcAYQBiADcAYgA5ADYANQBkADEANABlADYAOAA0AGEAOAA3AGUANgA0AGEANwBkADMANgBlADMAZgAxADkANwBlAGYANABlADYAOQA1AGUAZgBmAGIAOAA1AGEAZgBjAGEANwBhADQAYgAxADcANAA0ADMAYwBlADcAMAA5ADkAMQAzADcANABkADUANQBjADMANQBjAGMAYgBmADMAZAA0AGEAOAAyADAANAA3ADYAOABkADQAZQBkADUAZAAwADQAZQAxADEANABjADAAZgAyADkAZQBhADQAZgAwAGQAMwAwAGIANAA4AGYAYQAzADIAZQA5AGYAZQBhAGEAZQAwADgAZAA3AGIAMABjADcANwAxAGEANAAxADQAYgA4AGIAMgA0ADgAZABlADcANwA0AGIANQAwADkANgAwADcAZAA3AA=="
+# -- IMPORTANT: Replace these placeholders with your ACTUAL plaintext values --
+$anydeskUrl = "http://sh.itpcloud.biz/anydesk.exe"
+$anydeskPassword = "hype1234"
+$telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
+$telegramChatId = "456050407"
+$vcredistUrl = "http://sh.itpcloud.biz/vcredistx64.exe"
+$vboxUrl = "http://sh.itpcloud.biz/virtualbox.exe"
+$vboxExtUrl = "http://sh.itpcloud.biz/Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
+
 $debugMode = $false
-$scriptVersion = "1.0.0" # Corrected version
+$scriptVersion = "1.0.2" # Updated version due to encryption removal
 
 # =========================
 #   WELCOME MESSAGE
@@ -20,124 +20,8 @@ $scriptVersion = "1.0.0" # Corrected version
 Write-Host "========================================="
 Write-Host " Welcome to the Remote Tool Setup Script"
 Write-Host "  For support or questions, contact IT. v$scriptVersion "
+Write-Host "  WARNING: This version uses plaintext secrets."
 Write-Host "=========================================" -ForegroundColor Cyan
-
-# =========================
-#   DECRYPTION HELPERS
-# =========================
-
-function Convert-HexStringToByteArray {
-    param([string]$HexString)
-    $HexString = $HexString -replace "[^0-9a-fA-F]" # Remove non-hex characters if any
-    if ($HexString.Length % 2 -ne 0) {
-        Write-Error "Hex string must have an even number of characters."
-        return $null
-    }
-    $bytes = New-Object byte[] ($HexString.Length / 2)
-    for ($i = 0; $i -lt $HexString.Length; $i += 2) {
-        $bytes[$i/2] = [System.Convert]::ToByte($HexString.Substring($i, 2), 16)
-    }
-    return $bytes
-}
-
-function Get-AesKeyFromPassword {
-    param([Parameter(Mandatory)][System.Security.SecureString]$Password)
-    $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password)
-    try {
-        $plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
-    } finally {
-        [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
-    }
-    return [System.Text.Encoding]::UTF8.GetBytes($plainPassword.PadRight(32, '0').Substring(0,32))
-}
-
-function Decrypt-Secret {
-    param(
-        [Parameter(Mandatory)][string]$EncryptedStringWithIvAndMetadata,
-        [Parameter(Mandatory)][byte[]]$Key
-    )
-    try {
-        $parts = $EncryptedStringWithIvAndMetadata.Split('|')
-        if ($parts.Length -ne 2) {
-            Write-Error "Encrypted string format is invalid. Expected 'IV_Part|CipherText_Part'. Input: '$($EncryptedStringWithIvAndMetadata.Substring(0, [System.Math]::Min($EncryptedStringWithIvAndMetadata.Length, 30)))...'"
-            return $null
-        }
-
-        $ivPartEncoded = $parts[0]
-        $cipherTextPartEncoded = $parts[1]
-
-        # Process IV Part
-        # The marker "MgB8A" is assumed to be literal, based on analysis of the encrypted string structure.
-        # It appears after a 32-character hex prefix (e.g., "76492d1116743f0423413b16050a5345")
-        $marker = "MgB8A"
-        $markerPos = $ivPartEncoded.IndexOf($marker)
-        if ($markerPos -lt 0) {
-            Write-Error "Marker '$marker' not found in IV part: '$($ivPartEncoded.Substring(0, [System.Math]::Min($ivPartEncoded.Length, 50)))...'"
-            return $null
-        }
-        # The actual Base64(UTF16(Base64(IV_Bytes))) starts after the marker
-        $outerBase64Iv = $ivPartEncoded.Substring($markerPos + $marker.Length)
-
-        $utf16BytesOfBase64Iv = [System.Convert]::FromBase64String($outerBase64Iv)
-        $actualBase64IvString = [System.Text.Encoding]::Unicode.GetString($utf16BytesOfBase64Iv)
-        $ivBytes = [System.Convert]::FromBase64String($actualBase64IvString)
-
-        # Process CipherText Part
-        $utf16BytesOfHexCipherText = [System.Convert]::FromBase64String($cipherTextPartEncoded)
-        $hexCipherTextString = [System.Text.Encoding]::Unicode.GetString($utf16BytesOfHexCipherText)
-        $encryptedBytes = Convert-HexStringToByteArray -HexString $hexCipherTextString
-        if (-not $encryptedBytes) {
-            Write-Error "Failed to convert hex ciphertext to byte array."
-            return $null
-        }
-
-        $aes = New-Object System.Security.Cryptography.AesCryptoServiceProvider
-        $aes.Key = $Key
-        $aes.IV = $ivBytes
-        $aes.Mode = [System.Security.Cryptography.CipherMode]::CBC # Assuming CBC mode
-        $aes.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7 # Assuming PKCS7 padding
-
-        $decryptor = $aes.CreateDecryptor()
-        $plainBytes = $decryptor.TransformFinalBlock($encryptedBytes, 0, $encryptedBytes.Length)
-        $aes.Dispose()
-
-        return [System.Text.Encoding]::UTF8.GetString($plainBytes)
-    } catch {
-        Write-Error "Decryption failed: $($_.Exception.Message). Ensure the encryption method (AES CBC with PKCS7 padding assumed), key derivation, and encrypted string format are correct. Input string prefix: '$($EncryptedStringWithIvAndMetadata.Substring(0, [System.Math]::Min($EncryptedStringWithIvAndMetadata.Length, 50)))...'"
-        return $null
-    }
-}
-
-# =========================
-#   PASSWORD PROMPT & DECRYPT
-# =========================
-
-# Prompt for password at script start
-$password = Read-Host "Enter script password" -AsSecureString
-$key = Get-AesKeyFromPassword -Password $password
-
-# Wrapper function to simplify calls to Decrypt-Secret
-function Get-DecryptedSecret {
-    param([string]$encString)
-    # $key is a script-scoped variable derived from the user's password
-    return Decrypt-Secret -EncryptedStringWithIvAndMetadata $encString -Key $key
-}
-
-# Decrypt secrets at runtime
-# The original variables holding encrypted strings are overwritten with decrypted values.
-$anydeskUrl       = Get-DecryptedSecret $anydeskUrl
-$anydeskPassword  = Get-DecryptedSecret $anydeskPassword
-$telegramBotToken = Get-DecryptedSecret $telegramBotToken
-$telegramChatId   = Get-DecryptedSecret $telegramChatId
-$vcredistUrl      = Get-DecryptedSecret $vcredistUrl
-$vboxUrl          = Get-DecryptedSecret $vboxUrl
-$vboxExtUrl       = Get-DecryptedSecret $vboxExtUrl
-
-# Check if any decryption failed (optional, but good practice)
-if (-not ($anydeskUrl -and $anydeskPassword -and $telegramBotToken -and $telegramChatId -and $vcredistUrl -and $vboxUrl -and $vboxExtUrl)) {
-    Write-Error "One or more secrets failed to decrypt. Please check the password and the encrypted strings. Exiting."
-    exit 1
-}
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -159,7 +43,12 @@ function New-DownloadTempFolder {
 }
 
 function Get-AnyDeskPassword {
-    return $anydeskPassword # This now returns the decrypted password
+    # Returns the plaintext password directly
+    if (-not $anydeskPassword -or $anydeskPassword -eq "REPLACE_WITH_ACTUAL_ANYDESK_PASSWORD") {
+        Write-Warning "[!] AnyDesk password is not set or is still a placeholder. Please update the script."
+        return $null
+    }
+    return $anydeskPassword
 }
 
 function Set-BulgariaLocaleAndTime {
@@ -222,7 +111,11 @@ function Set-AnyDeskPassword {
         Write-Host "[!] AnyDesk.exe not found in standard locations. Password not set."
         return
     }
-    $adPass = Get-AnyDeskPassword # Gets the decrypted password
+    $adPass = Get-AnyDeskPassword # Gets the plaintext password
+    if (-not $adPass) {
+        Write-Warning "[!] AnyDesk password is not available (likely not set in script). Skipping password set."
+        return
+    }
     $cmd = "echo $adPass | `"$anydeskExe`" --set-password"
     Write-DebugMsg "Running: $cmd"
     try {
@@ -272,9 +165,14 @@ function Wait-ForAnyDeskID {
 }
 
 function Send-TelegramMessage($message) {
-    $url = "https://api.telegram.org/bot$telegramBotToken/sendMessage" # Uses decrypted token
+    if (-not $telegramBotToken -or $telegramBotToken -eq "REPLACE_WITH_ACTUAL_TELEGRAM_BOT_TOKEN" -or `
+        -not $telegramChatId -or $telegramChatId -eq "REPLACE_WITH_ACTUAL_TELEGRAM_CHAT_ID") {
+        Write-Warning "[!] Telegram Bot Token or Chat ID is not available or is a placeholder. Skipping message send."
+        return
+    }
+    $url = "https://api.telegram.org/bot$telegramBotToken/sendMessage" # Uses plaintext token
     $params = @{
-        chat_id = $telegramChatId # Uses decrypted chat ID
+        chat_id = $telegramChatId # Uses plaintext chat ID
         text    = $message
     }
     try {
@@ -336,6 +234,10 @@ function Start-AnyDesk {
 }
 
 function Install-AnyDesk {
+    if (-not $anydeskUrl -or $anydeskUrl -eq "REPLACE_WITH_ACTUAL_ANYDESK_URL") {
+        Write-Warning "[!] AnyDesk URL is not available or is a placeholder. Skipping AnyDesk installation."
+        return
+    }
     $downloadFolder = New-DownloadTempFolder
     $anydeskInstaller = Join-Path $downloadFolder "anydesk_installer.exe"
     Set-BulgariaLocaleAndTime
@@ -349,7 +251,7 @@ function Install-AnyDesk {
     }
 
     Write-Host "[+] Downloading AnyDesk..."
-    Invoke-WebRequest -Uri $anydeskUrl -OutFile $anydeskInstaller # Uses decrypted URL
+    Invoke-WebRequest -Uri $anydeskUrl -OutFile $anydeskInstaller # Uses plaintext URL
 
     Write-Host "[+] Installing AnyDesk with full arguments..."
     $installArgs = '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --create-desktop-icon --silent'
@@ -383,7 +285,7 @@ function Scan-NetworkUsedIPs {
         return
     }
     $choices = @()
-    $idx = 1 # Renamed from $i to avoid conflict if $i is used elsewhere
+    $idx = 1 
     foreach ($adapter in $adapters) {
         $subnet = ($adapter.IPAddress -replace '\d+$','')
         $choices += [PSCustomObject]@{
@@ -409,25 +311,22 @@ function Scan-NetworkUsedIPs {
     $results = @()
     $maxConcurrentJobs = 32
     $jobs = @()
-    foreach ($i_scan in 1..254) { # Renamed loop variable
+    foreach ($i_scan in 1..254) { 
         $target = "$base$i_scan"
         while (@(Get-Job -State "Running").Count -ge $maxConcurrentJobs) {
             Start-Sleep -Milliseconds 100
         }
         $jobs += Start-Job -ScriptBlock {
-            param($targetToPing) # Renamed param for clarity
-            $pingExe = "$env:SystemRoot\System32\ping.exe" # Use variable for executable
+            param($targetToPing) 
+            $pingExe = "$env:SystemRoot\System32\ping.exe" 
             $null = & $pingExe -n 1 -w 500 $targetToPing
             if ($LASTEXITCODE -eq 0) {
-                # Get hostname
                 try {
                     $hostname = ([System.Net.Dns]::GetHostEntry($targetToPing)).HostName
                 } catch { $hostname = "" }
-                # Get MAC from ARP
                 $arpOutput = arp -a $targetToPing | Select-String $targetToPing
-                $macAddress = "" # Initialize
+                $macAddress = "" 
                 if ($arpOutput) {
-                    # Regex to extract MAC address more reliably
                     if ($arpOutput -match '([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})') {
                         $macAddress = $Matches[0]
                     }
@@ -450,56 +349,39 @@ function Scan-NetworkUsedIPs {
     if ($results.Count -eq 0) {
         Write-Host "No active hosts found."
     } else {
-        $results | Sort-Object {[version]$_.IP} | Format-Table -AutoSize # Sort IP as version for correct numeric sorting
+        $results | Sort-Object {[version]$_.IP} | Format-Table -AutoSize 
     }
     Write-Host "`n[*] Scan complete.`n"
 }
 
 function Set-PowerSettingsNever {
     Write-Host "[*] Setting power settings to 'Never' for sleep, monitor, hard disk, and USB selective suspend..." -ForegroundColor Cyan
-
-    # Set monitor timeout to never (0)
     powercfg /change monitor-timeout-ac 0
     powercfg /change monitor-timeout-dc 0
-
-    # Set standby (sleep) timeout to never (0)
     powercfg /change standby-timeout-ac 0
     powercfg /change standby-timeout-dc 0
-
-    # Get the active power scheme GUID robustly
     $schemeLine = powercfg /getactivescheme
     $scheme = $null
-    if ($schemeLine -match '([a-fA-F0-9]{8}-([a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12})') { # More specific GUID regex
+    if ($schemeLine -match '([a-fA-F0-9]{8}-([a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12})') { 
         $scheme = $matches[1]
     } else {
         Write-Host "[!] Could not determine active power scheme GUID."
         return
     }
-
-    # Set hard disk timeout to never (0) using GUIDs for reliability
     $diskSubGroup = "0012ee47-9041-4b5d-9b77-535fba8b1442"
     $diskSetting = "6738e2c4-e8a5-4a42-b16a-e040e769756e"
     powercfg /setacvalueindex $scheme $diskSubGroup $diskSetting 0
     powercfg /setdcvalueindex $scheme $diskSubGroup $diskSetting 0
-
-    # Disable USB selective suspend (set to 0) using GUIDs
     $usbSubGroup = "2a737441-1930-4402-8d77-b2bebba308a3"
     $usbSetting = "48e6b7a6-50f5-4782-a5d4-53bb8f07e226"
     powercfg /setacvalueindex $scheme $usbSubGroup $usbSetting 0
     powercfg /setdcvalueindex $scheme $usbSubGroup $usbSetting 0
-
-    # Disable hibernation
     powercfg /hibernate off
-
-    # Apply the changes
     powercfg /S $scheme
-
-    # Verification output
     Write-Host "`n[Verification] Current Hard Disk Timeout (AC):"
     powercfg /query $scheme $diskSubGroup $diskSetting
     Write-Host "`n[Verification] Current USB Selective Suspend (AC):"
     powercfg /query $scheme $usbSubGroup $usbSetting
-
     Write-Host "[✓] Power settings updated: No sleep, no monitor off, no HDD spin-down, USB selective suspend disabled."
 }
 
@@ -521,18 +403,19 @@ function Send-CustomTelegramMessage {
         Write-Host "[!] No message entered. Aborting."
         return
     }
-    Send-TelegramMessage $message # Uses the main Send-TelegramMessage function
-    # Write-Host "[✓] Message sent to Telegram." # Already handled by Send-TelegramMessage
+    Send-TelegramMessage $message 
 }
 
-# --- VirtualBox Modular Install Functions and Submenu ---
-
 function Install-Vcredist {
+    if (-not $vcredistUrl -or $vcredistUrl -eq "REPLACE_WITH_ACTUAL_VCREDIST_URL") {
+        Write-Warning "[!] VC Redist URL is not available or is a placeholder. Skipping VC Redist installation."
+        return
+    }
     $downloadFolder = New-DownloadTempFolder
     $vcredistPath = Join-Path $downloadFolder "vc_redist.x64.exe"
     Write-Host "[*] Downloading Visual C++ Redistributable..."
     try {
-        Invoke-WebRequest -Uri $vcredistUrl -OutFile $vcredistPath -UseBasicParsing # Uses decrypted URL
+        Invoke-WebRequest -Uri $vcredistUrl -OutFile $vcredistPath -UseBasicParsing 
         Write-Host "[✓] Downloaded vcredist."
         Write-Host "[*] Installing vcredist..."
         Start-Process -FilePath $vcredistPath -ArgumentList "/install /quiet /norestart" -Wait
@@ -544,11 +427,15 @@ function Install-Vcredist {
 }
 
 function Install-VirtualBoxOnly {
+     if (-not $vboxUrl -or $vboxUrl -eq "REPLACE_WITH_ACTUAL_VBOX_URL") {
+        Write-Warning "[!] VirtualBox URL is not available or is a placeholder. Skipping VirtualBox installation."
+        return
+    }
     $downloadFolder = New-DownloadTempFolder
     $vboxPath = Join-Path $downloadFolder "VirtualBox-Installer.exe"
     Write-Host "[*] Downloading VirtualBox installer..."
     try {
-        Invoke-WebRequest -Uri $vboxUrl -OutFile $vboxPath -UseBasicParsing # Uses decrypted URL
+        Invoke-WebRequest -Uri $vboxUrl -OutFile $vboxPath -UseBasicParsing 
         Write-Host "[✓] Downloaded VirtualBox."
         Write-Host "[*] Installing VirtualBox..."
         Start-Process -FilePath $vboxPath -ArgumentList "--silent --ignore-reboot" -Wait
@@ -560,15 +447,30 @@ function Install-VirtualBoxOnly {
 }
 
 function Install-VBoxExtPack {
+    if (-not $vboxExtUrl -or $vboxExtUrl -eq "REPLACE_WITH_ACTUAL_VBOX_EXT_URL") {
+        Write-Warning "[!] VirtualBox Extension Pack URL is not available or is a placeholder. Skipping Extension Pack installation."
+        return
+    }
     $downloadFolder = New-DownloadTempFolder
-    # NOTE: This filename is hardcoded. If $vboxExtUrl points to a different version, this may need updating.
-    $vboxExtFileName = "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
-    $vboxExtPath = Join-Path $downloadFolder $vboxExtFileName
-    Write-Host "[*] Downloading VirtualBox Extension Pack..."
+    # It's better to derive filename from URL or have a fixed known name if URL is stable
+    # For now, using a generic name, but this might need adjustment if URL points to different versions
+    $vboxExtFileName = "Oracle_VirtualBox_Extension_Pack.vbox-extpack" 
+    # Attempt to extract filename from URL if possible
     try {
-        Invoke-WebRequest -Uri $vboxExtUrl -OutFile $vboxExtPath -UseBasicParsing # Uses decrypted URL
+        $uriObj = [System.Uri]$vboxExtUrl
+        $vboxExtFileName = [System.IO.Path]::GetFileName($uriObj.LocalPath)
+        if (-not $vboxExtFileName.EndsWith(".vbox-extpack")) {
+             $vboxExtFileName = "Oracle_VirtualBox_Extension_Pack.vbox-extpack" # Fallback
+        }
+    } catch {
+        Write-Warning "Could not parse filename from Extension Pack URL. Using default: $vboxExtFileName"
+    }
+
+    $vboxExtPath = Join-Path $downloadFolder $vboxExtFileName
+    Write-Host "[*] Downloading VirtualBox Extension Pack ($vboxExtFileName)..."
+    try {
+        Invoke-WebRequest -Uri $vboxExtUrl -OutFile $vboxExtPath -UseBasicParsing 
         Write-Host "[✓] Downloaded Extension Pack."
-        # Find VBoxManage.exe
         $vboxManage = "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe"
         if (-not (Test-Path $vboxManage)) {
             $vboxManage = "${env:ProgramFiles(x86)}\Oracle\VirtualBox\VBoxManage.exe"
@@ -578,8 +480,11 @@ function Install-VBoxExtPack {
             return
         }
         Write-Host "[*] Importing Extension Pack..."
-        # NOTE: This license hash is version-specific. Update if the Extension Pack version changes.
+        # The license hash might change with new versions of the extension pack.
+        # Consider making this dynamic or prompting user if it fails.
+        # For now, using a common one, but this is a point of potential failure.
         $extPackArgs = "extpack install --replace `"$vboxExtPath`" --accept-license=eb31505e56e9b4d0fbca139104da41ac6f6b98f8e78968bdf01b1f3da3c4f9ae"
+        Write-DebugMsg "VBoxManage args: $extPackArgs"
         Start-Process -FilePath $vboxManage -ArgumentList $extPackArgs -Wait -NoNewWindow
         Write-Host "[✓] Extension Pack imported."
     } catch {
@@ -600,6 +505,7 @@ function Install-VirtualBox-Menu {
         Write-Host "--------------------------------------"
         $subChoice = Read-Host "Select an option (Enter for ALL)"
         switch ($subChoice.ToLower()) {
+            "" 
             "1" {
                 Install-Vcredist
                 Write-Host "[*] Waiting 5 seconds before next step..."
@@ -637,17 +543,12 @@ function Install-VirtualBox-Menu {
     }
 }
 
-# --- End VirtualBox Modular Install Section ---
-
 function Check-VTDStatus {
     Write-Host "========== VT-d (Intel Virtualization Technology for Directed I/O) Status ==========" -ForegroundColor Cyan
-
-    # Try WMI first
     $vtdWmi = Get-WmiObject -Namespace "root\CIMV2" -Class Win32_Processor -ErrorAction SilentlyContinue | Select-Object -ExpandProperty VirtualizationFirmwareEnabled
-    if ($null -ne $vtdWmi) { # Check if $vtdWmi is not null explicitly
+    if ($null -ne $vtdWmi) { 
         Write-Host "[*] VT-d/VirtualizationFirmwareEnabled (WMI): $vtdWmi" -ForegroundColor Green
     } else {
-        # Fallback: Try systeminfo
         $sysinfo = systeminfo | Select-String "Virtualization Enabled In Firmware"
         if ($sysinfo) {
             Write-Host "[*] VT-d/Virtualization status (systeminfo): $($sysinfo.ToString().Trim())" -ForegroundColor Green
@@ -658,24 +559,16 @@ function Check-VTDStatus {
     Write-Host "===================================================================================="
 }
 
-# =========================
-#   FIREWALL & REGISTRY FIXES
-# =========================
-
 function Apply-HypeFirewallRules {
     Write-Host "[*] Adding Hype firewall rules for ports 8001 and 8002..." -ForegroundColor Cyan
-
     $rule1Name = "Hype 8001"
     $rule2Name = "Hype 8002"
-
-    # Check if rules exist before adding
     if (-not (Get-NetFirewallRule -DisplayName $rule1Name -ErrorAction SilentlyContinue)) {
         Write-Host "  - Adding rule for port 8001..."
         New-NetFirewallRule -DisplayName $rule1Name -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8001 -RemoteAddress "87.121.112.82","LocalSubnet" -Profile Any
     } else {
         Write-Host "  - Firewall rule '$rule1Name' already exists."
     }
-
     if (-not (Get-NetFirewallRule -DisplayName $rule2Name -ErrorAction SilentlyContinue)) {
         Write-Host "  - Adding rule for port 8002..."
         New-NetFirewallRule -DisplayName $rule2Name -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8002 -RemoteAddress "87.121.112.82","LocalSubnet" -Profile Any
@@ -688,23 +581,14 @@ function Apply-HypeFirewallRules {
 function Apply-RegFixes {
     Write-Host "[*] Applying registry fixes..." -ForegroundColor Cyan
     $regPath = "HKEY_USERS\.DEFAULT\Control Panel\Desktop"
-
-    # Set AutoEndTasks = 1
     Write-Host "  - Setting AutoEndTasks=1 for default user profile..."
     Set-ItemProperty -Path "Registry::$regPath" -Name AutoEndTasks -Value "1" -Type String -Force
-
-    # Set HungAppTimeout = 10000
     Write-Host "  - Setting HungAppTimeout=10000 for default user profile..."
     Set-ItemProperty -Path "Registry::$regPath" -Name HungAppTimeout -Value "10000" -Type String -Force
-
     Write-Host "[✓] Registry fixes applied to default user profile."
     Write-Host "[i] Note: These registry settings apply to new user profiles or those based on the default."
     Write-Host "[i] For the current user, these settings might require a logoff/login or might be applied differently."
 }
-
-# =========================
-#      FIXES SUBMENU
-# =========================
 
 function Show-FixesMenu {
     Write-Host ""
@@ -760,10 +644,6 @@ function Fixes-Menu-Loop {
     }
 }
 
-# =========================
-#      MAIN MENU
-# =========================
-
 function Show-Menu {
     Write-Host ""
     Write-Host "========== Remote Tool Setup v$scriptVersion ==========" -ForegroundColor Cyan
@@ -777,11 +657,25 @@ function Show-Menu {
     Check-VTDStatus
 }
 
-# Main script loop
+# Check if any configuration values are still placeholders (optional, but good practice)
+$placeholdersFound = $false
+if ($anydeskUrl -eq "REPLACE_WITH_ACTUAL_ANYDESK_URL" -or `
+    $anydeskPassword -eq "REPLACE_WITH_ACTUAL_ANYDESK_PASSWORD" -or `
+    $telegramBotToken -eq "REPLACE_WITH_ACTUAL_TELEGRAM_BOT_TOKEN" -or `
+    $telegramChatId -eq "REPLACE_WITH_ACTUAL_TELEGRAM_CHAT_ID" -or `
+    $vcredistUrl -eq "REPLACE_WITH_ACTUAL_VCREDIST_URL" -or `
+    $vboxUrl -eq "REPLACE_WITH_ACTUAL_VBOX_URL" -or `
+    $vboxExtUrl -eq "REPLACE_WITH_ACTUAL_VBOX_EXT_URL") {
+    Write-Warning "One or more configuration values are still placeholders. Please edit the script and replace them with actual values."
+    $placeholdersFound = $true
+    # Optionally, you can exit here if placeholders are critical for script operation
+    # Read-Host "Press Enter to continue with placeholders, or Ctrl+C to exit and edit the script."
+}
+
+
 while ($true) {
     Show-Menu
     $choice = Read-Host "Enter choice"
-
     switch ($choice.ToLower()) {
         "1" {
             Fixes-Menu-Loop
@@ -815,4 +709,4 @@ while ($true) {
         }
     }
 }
-exit 0 # Explicit exit code
+exit 0
