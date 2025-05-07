@@ -92,7 +92,7 @@ function Set-BulgariaLocaleAndTime {
 
     Write-Host "[*] Setting keyboard layouts: Bulgarian Traditional Phonetic and US..."
     $langList = New-WinUserLanguageList bg-BG
-    $langList[0].InputMethodTips.Add("0402:00040402") # Bulgarian Traditional Phonetic
+    $langList[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
     $langList.Add((New-WinUserLanguageList en-US)[0]) # US Keyboard
     Set-WinUserLanguageList $langList -Force
 
