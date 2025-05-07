@@ -611,6 +611,66 @@ function Apply-RegFixes {
     Write-Host "[✓] Registry fixes applied."
 }
 
+
+
+# =========================
+#      FIXES SUBMENU
+# =========================
+
+function Show-FixesMenu {
+    Clear-Host
+    Write-Host "========== Fixes & Configuration ==========" -ForegroundColor Cyan
+    Write-Host "[1] Set Bulgaria Locale/Time/Keyboard"
+    Write-Host "[2] Set Power Settings to Never Sleep/Standby/Spin Down"
+    Write-Host "[3] Apply Firewall Rules"
+    Write-Host "[4] Apply Registry Fixes"
+    Write-Host "[5] Open Device Manager"
+    Write-Host "[b] Back to main menu"
+    Write-Host "==========================================="
+}
+
+function Fixes-Menu-Loop {
+    while ($true) {
+        Show-FixesMenu
+        $fixChoice = Read-Host "Enter choice"
+        switch ($fixChoice.ToLower()) {
+            "1" {
+                Set-BulgariaLocaleAndTime
+                Write-Host "`nPress Enter to return to the Fixes menu..."
+                Read-Host
+            }
+            "2" {
+                Set-PowerSettingsNever
+                Write-Host "`nPress Enter to return to the Fixes menu..."
+                Read-Host
+            }
+            "3" {
+                Apply-HypeFirewallRules
+                Write-Host "`nPress Enter to return to the Fixes menu..."
+                Read-Host
+            }
+            "4" {
+                Apply-RegFixes
+                Write-Host "`nPress Enter to return to the Fixes menu..."
+                Read-Host
+            }
+            "5" {
+                Open-DeviceManager
+                Write-Host "`nPress Enter to return to the Fixes menu..."
+                Read-Host
+            }
+            "b" {
+                return
+            }
+            default {
+                Write-Host "Invalid choice."
+                Write-Host "`nPress Enter to return to the Fixes menu..."
+                Read-Host
+            }
+        }
+    }
+}
+
 # =========================
 #      MAIN MENU (UPDATED)
 # =========================
@@ -619,13 +679,10 @@ function Show-Menu {
     Clear-Host
     Write-Host "========== Remote Tool Setup ==========" -ForegroundColor Cyan
     Write-Host "[1] Install AnyDesk"
-    Write-Host "[2] Scan Network for Used IP Addresses"
-    Write-Host "[3] Set Power Settings to Never Sleep/Standby/Spin Down"
-    Write-Host "[4] Open Device Manager"
-    Write-Host "[5] Send Custom Telegram Message"
-    Write-Host "[6] Install VirtualBox (vcredist, VirtualBox, Extension Pack)"
-    Write-Host "[7] Apply Firewall Rules"
-    Write-Host "[8] Apply Registry Fixes"
+    Write-Host "[2] Fixes & Configuration"
+    Write-Host "[3] Scan Network for Used IP Addresses"
+    Write-Host "[4] Send Custom Telegram Message"
+    Write-Host "[5] Install VirtualBox (vcredist, VirtualBox, Extension Pack)"
     Write-Host "[x] Exit"
     Write-Host "======================================="
     Check-VTDStatus
@@ -637,42 +694,25 @@ while ($true) {
 
     switch ($choice.ToLower()) {
         "1" {
+            Fixes-Menu-Loop
+        }
+        "2" {
             Install-AnyDesk
             Write-Host "`nPress Enter to return to the menu..."
             Read-Host
         }
-        "2" {
+        "3" {
             Scan-NetworkUsedIPs
             Write-Host "`nPress Enter to return to the menu..."
             Read-Host
         }
-        "3" {
-            Set-PowerSettingsNever
-            Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
-        }
         "4" {
-            Open-DeviceManager
-            Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
-        }
-        "5" {
             Send-CustomTelegramMessage
             Write-Host "`nPress Enter to return to the menu..."
             Read-Host
         }
-        "6" {
+        "5" {
             Install-VirtualBox-Menu
-        }
-        "7" {
-            Apply-HypeFirewallRules
-            Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
-        }
-        "8" {
-            Apply-RegFixes
-            Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
         }
         "x" {
             Write-Host "Exiting..."
