@@ -33,8 +33,6 @@ function Decrypt-Secret {
     return [System.Net.NetworkCredential]::new("", $secure).Password
 }
 
-# --- Uncomment and run this block to generate encrypted secrets ---
-<# 
 $password = Read-Host "Enter password for encryption" -AsSecureString
 $key = Get-AesKeyFromPassword -Password $password
 
@@ -55,5 +53,3 @@ Write-Host "`$telegramChatIdEnc  = `"$telegramChatIdEnc`""
 Write-Host "`$vcredistUrlEnc     = `"$vcredistUrlEnc`""
 Write-Host "`$vboxUrlEnc         = `"$vboxUrlEnc`""
 Write-Host "`$vboxExtUrlEnc      = `"$vboxExtUrlEnc`""
-#>
-
