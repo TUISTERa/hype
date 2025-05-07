@@ -1,8 +1,4 @@
-# =========================
-#  Secret Encryption Helper
-# =========================
-# Run this section ONCE to generate encrypted secrets with your password.
-# Copy the output strings into the CONFIG section below.
+# Multi-Secret Encryptor Helper for PowerShell cross-machine use
 
 function Get-AesKeyFromPassword {
     param([Parameter(Mandatory)][System.Security.SecureString]$Password)
@@ -24,32 +20,31 @@ function Encrypt-Secret {
     return $secure | ConvertFrom-SecureString -Key $Key
 }
 
-function Decrypt-Secret {
-    param(
-        [Parameter(Mandatory)][string]$Encrypted,
-        [Parameter(Mandatory)][byte[]]$Key
-    )
-    $secure = $Encrypted | ConvertTo-SecureString -Key $Key
-    return [System.Net.NetworkCredential]::new("", $secure).Password
-}
-
-$password = Read-Host "Enter password for encryption" -AsSecureString
+Write-Host "=== PowerShell Multi-Secret Encryptor (Cross-Machine Compatible) ===" -ForegroundColor Cyan
+$password = Read-Host "Enter the script password (same as used at runtime)" -AsSecureString
 $key = Get-AesKeyFromPassword -Password $password
 
-Write-Host "Paste each value when prompted. Copy the output for use in the script."
-$anydeskUrlEnc      = Encrypt-Secret -Secret (Read-Host "AnyDesk URL") -Key $key
-$anydeskPasswordEnc = Encrypt-Secret -Secret (Read-Host "AnyDesk Password") -Key $key
-$telegramBotTokenEnc= Encrypt-Secret -Secret (Read-Host "Telegram Bot Token") -Key $key
-$telegramChatIdEnc  = Encrypt-Secret -Secret (Read-Host "Telegram Chat ID") -Key $key
-$vcredistUrlEnc     = Encrypt-Secret -Secret (Read-Host "vcredist URL") -Key $key
-$vboxUrlEnc         = Encrypt-Secret -Secret (Read-Host "VirtualBox URL") -Key $key
-$vboxExtUrlEnc      = Encrypt-Secret -Secret (Read-Host "VBox Extension Pack URL") -Key $key
+$results = @()
 
-Write-Host "`nCopy these lines into the CONFIG section:"
-Write-Host "`$anydeskUrlEnc      = `"$anydeskUrlEnc`""
-Write-Host "`$anydeskPasswordEnc = `"$anydeskPasswordEnc`""
-Write-Host "`$telegramBotTokenEnc= `"$telegramBotTokenEnc`""
-Write-Host "`$telegramChatIdEnc  = `"$telegramChatIdEnc`""
-Write-Host "`$vcredistUrlEnc     = `"$vcredistUrlEnc`""
-Write-Host "`$vboxUrlEnc         = `"$vboxUrlEnc`""
-Write-Host "`$vboxExtUrlEnc      = `"$vboxExtUrlEnc`""
+do {
+    do {
+        $name = Read-Host "Enter a variable name for this secret (e.g., anydeskUrlEnc, apiTokenEnc)"
+        $name = $name.Trim()
+        if ($name.StartsWith('$')) { $name = $name.Substring(1) }
+        if (-not $name) {
+            Write-Host "Variable name cannot be empty. Please enter a valid name (without $)." -ForegroundColor Red
+        }
+    } while (-not $name)
+    $secret = Read-Host "Enter the secret value to encrypt"
+    $encrypted = Encrypt-Secret -Secret $secret -Key $key
+    $results += [PSCustomObject]@{
+        Name = $name
+        EncryptedValue = $encrypted
+    }
+    $again = Read-Host "Encrypt another secret? (y/n)"
+} while ($again -eq 'y' -or $again -eq 'Y')
+
+Write-Host "`n=== Encrypted Secrets (copy these lines into your CONFIG section) ===" -ForegroundColor Green
+foreach ($item in $results) {
+    Write-Host ('$' + $item.Name + ' = "' + $item.EncryptedValue + '"') -ForegroundColor Yellow
+}
