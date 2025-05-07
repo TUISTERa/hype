@@ -505,8 +505,7 @@ function Install-VirtualBox-Menu {
         Write-Host "--------------------------------------"
         $subChoice = Read-Host "Select an option (Enter for ALL)"
         switch ($subChoice.ToLower()) {
-            "" 
-            "1" {
+            "", "1" { # Corrected: "" and "1" now share the same code block
                 Install-Vcredist
                 Write-Host "[*] Waiting 5 seconds before next step..."
                 Start-Sleep -Seconds 5
@@ -538,6 +537,9 @@ function Install-VirtualBox-Menu {
             }
             default {
                 Write-Host "Invalid selection."
+                # Added a Read-Host here for consistency with other menu options after an invalid choice
+                Write-Host "`nPress Enter to return to the VirtualBox menu..."
+                Read-Host
             }
         }
     }
