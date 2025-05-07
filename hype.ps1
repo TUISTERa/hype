@@ -91,10 +91,34 @@ function Set-BulgariaLocaleAndTime {
     Set-TimeZone -Id "FLE Standard Time"
 
     Write-Host "[*] Setting keyboard layouts: Bulgarian Traditional Phonetic and US..."
-    $langList = New-WinUserLanguageList bg-BG
-    $langList[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
-    $langList.Add((New-WinUserLanguageList en-US)[0]) # US Keyboard
+
+    # Remove all language lists and set only what we want
+    $langList = @()
+
+    # Bulgarian with only Traditional Phonetic
+    $bg = New-WinUserLanguageList bg-BG
+    $bg[0].InputMethodTips.Clear()
+    $bg[0].InputMethodTips.Add("0402:00030402") # Bulgarian Traditional Phonetic
+    $langList += $bg[0]
+
+    # US English with only US layout
+    $us = New-WinUserLanguageList en-US
+    $us[0].InputMethodTips.Clear()
+    $us[0].InputMethodTips.Add("0409:00000409") # US
+    $langList += $us[0]
+
     Set-WinUserLanguageList $langList -Force
+
+    # Remove any other installed input methods for bg-BG
+    $regPath = "HKCU:\Keyboard Layout\Preload"
+    $preloads = Get-ItemProperty -Path $regPath | Select-Object -Property * | Get-Member -MemberType NoteProperty | Where-Object { $_.Name -match '^\d+$' }
+    foreach ($preload in $preloads) {
+        $value = (Get-ItemProperty -Path $regPath).$($preload.Name)
+        if ($value -eq "00000402") {
+            # Remove Bulgarian Typewriter if present
+            Remove-ItemProperty -Path $regPath -Name $preload.Name -ErrorAction SilentlyContinue
+        }
+    }
 
     Write-Host "[*] Syncing system time with NTP server..."
     try {
