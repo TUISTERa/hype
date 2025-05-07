@@ -600,7 +600,6 @@ function Install-VirtualBox-Menu {
         Write-Host "--------------------------------------"
         $subChoice = Read-Host "Select an option (Enter for ALL)"
         switch ($subChoice.ToLower()) {
-            "" 
             "1" {
                 Install-Vcredist
                 Write-Host "[*] Waiting 5 seconds before next step..."
