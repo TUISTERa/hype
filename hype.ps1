@@ -3,7 +3,7 @@
 #      CONFIG (ENCRYPTED)
 # =========================
 
-# -- Paste your encrypted values here (generated above) --
+# -- Paste your encrypted values here --
 $anydeskUrl = "76492d1116743f0423413b16050a5345MgB8AFoAbwB3AFkAdABjAGwAcgBIADkAMQBaAEgATgB1ADEAUgArAGQAQQBWAFEAPQA9AHwAZQAxAGIAMQA2AGMAZQBmADQANgBjAGEAOQA0AGYANgBhAGMAMQA0ADUAZABjADEAMAA0ADEAYQA5ADMAYQAyADUAMgAxADIANQAyADAAMwA2ADAAYQBmADQAYgA5ADAAYgA1AGQANQA1ADQAOQAyADMAYgA1ADgAMABlADcAZAA2AGYAMgBiADkANwAzADEAMgBlADMAOAA1ADMAYwA3ADEAYwA4ADAAYwBjADYAMgBkADUAYwBhAGQAMAAyAGQAZQA5ADQANgA1AGIAYQA2AGUAMQA2ADMAMgA1ADAANgBlADMAMwA3ADcANgBjAGEANABhAGYAYgBlADQAYgBlAGEANAA5ADkANAA1ADgAYgAwAGIAYQBjADAAYgA1AGYAZQA5AGQAMQAyADkAOQA3ADYANQAwADIAYQA0AGQAMgA="
 $anydeskPassword = "76492d1116743f0423413b16050a5345MgB8AFYAQQBEAGkAUQBpAGMAMwBBAGwAaQBOAEgAUgA5AHQAbQBFADQAcAA3AHcAPQA9AHwAMwAxADQANwBiADYAMgBmADEAZgA4AGIAMQBhADMAYgA1ADMANABmADQAMAAwADcAMwBhAGEAOQAzAGQANgBhAGQAYQBhAGIANABhADEAYwAyAGYAMQA2AGQAZAAwADAAZQBiAGQAZABkADQAMgBjADcANQAwADUAMwA0AGIANAA="
 $telegramBotToken = "76492d1116743f0423413b16050a5345MgB8AGcAeQBrAEcANwBYAHIAVwBHAEoAWgA2AFIAWQBHAHcAbQAvADAAMABoAHcAPQA9AHwAZQAyADUAZQAxAGUAYwAwADQAZgA4ADgAMQBkAGUAYQAzADkANgBlADAAZQAzADAANwAyADAAMgA2ADMAMABkADQAMgAyAGYAOABlADkAZAAzADcANABjAGIAZQBjADkANgBhADcANQA4AGQANgAzADcAMAAzAGYAZgA4AGEAYwA1ADgANgA1AGEAZQA4AGIAMgBmADQAMABhADcAMwA0ADMAYgA1ADcAYwAzAGQANQBlAGYAYgA5ADkAMgAzAGYAZAA2AGMANwAwADYAYQAxADMANgA0ADMAMgBiAGMANQA3AGIANQA1ADYAYwAwADIAYQA2AGUANAAxADQAZAAxADMANAA5ADIANQA0ADgAZAA0ADkANABiAGMANABlADAAOAAzADQAOQBjADEAOAA0ADQAZQAyADUAMgBiAGUAMwA4AGIANwBhADAANgBhAGUANgA1ADMAMQA2AGYAZgA5ADEANAAwAGEAMgA2AGUANQA0ADkAMwBmADcANwA0ADIA"
@@ -12,17 +12,33 @@ $vcredistUrl = "76492d1116743f0423413b16050a5345MgB8AHAAawBJAGQATABtADEAMgBGAGsA
 $vboxUrl = "76492d1116743f0423413b16050a5345MgB8AHoAWgBqAEoAbgAwADMAMgAzAFkAMwBqAHAARwBYAEYAQwBBAGoAVABFAEEAPQA9AHwAOQA4ADkAYQAzADEAMwBjAGEAMQA2ADgAMgBhADYAMgAwADgAMgA1ADEANAAxADUAZgAyAGQAZQA2ADgAOQA4ADMANgBkADIAYQA0AGIAMgA4AGQAYwA2ADAANABiADEAYwA1AGYAMQAyAGUAYgAwADIANQBhADgAMQA0ADQAZgBlADUANQBkADUAMQAyADIAMwAxAGMAMAAzADYAZQA3ADcAYgAzAGEANgA2ADgAYwBjAGYAZQBjADgANQAwAGQAZgBiADgAMwBmAGUAZQA3AGUAYgBkAGYAOQA0ADEAOQA4ADMAZgBjADMAMABhADIAYQAyADYAZAA3ADgAMAA1ADgAOQA5AGIAZQBkADIAZQAxAGQAMgAwADgANgA0AGIAZQA3ADYAMwBmADQAMwA4ADgANQA1ADYAZQAzAGEAMQA="
 $vboxExtUrl = "76492d1116743f0423413b16050a5345MgB8AFIARQBEAGgAagBtAHIAUQBXAGMAUwBtAFoAaQBVAEcATgAxAEoASQA5AGcAPQA9AHwANwBkAGYANQA1AGQAMQA1ADkAYQBkADUAMAAyAGEAZABkAGEANgAzADYAYwBkADYAMgBiADYAZAA0ADIAYgAzAGYANgBmAGIAMAA2AGUAYQBmADYAMABiADkAMwBjADcAMAA0AGYANAA5ADIANgA3ADUAMgAwADkAOAAzAGEAMAAyADgANAA0ADQAOQBiAGYAMgAwADAANwBiADYAMwA4AGEAZAA1AGIAYgAxADkAMQAwAGQAZgBhADIAYQA2AGQANwBhAGYANwBlADgANwBmADUAMgAyADcAZgA0ADEAMQA0ADYAMwAzADUAMgBhADIAYwBlAGUAMgAwADcAOQBmADcAYgBjADEAYwA2AGQAZABhADgAZgBiADgAMgA4AGYAZQBkADMANQAzADgAZgA5ADYAYgAzADUAMAA3ADcAYQBiADcAYgA5ADYANQBkADEANABlADYAOAA0AGEAOAA3AGUANgA0AGEANwBkADMANgBlADMAZgAxADkANwBlAGYANABlADYAOQA1AGUAZgBmAGIAOAA1AGEAZgBjAGEANwBhADQAYgAxADcANAA0ADMAYwBlADcAMAA5ADkAMQAzADcANABkADUANQBjADMANQBjAGMAYgBmADMAZAA0AGEAOAAyADAANAA3ADYAOABkADQAZQBkADUAZAAwADQAZQAxADEANABjADAAZgAyADkAZQBhADQAZgAwAGQAMwAwAGIANAA4AGYAYQAzADIAZQA5AGYAZQBhAGEAZQAwADgAZAA3AGIAMABjADcANwAxAGEANAAxADQAYgA4AGIAMgA0ADgAZABlADcANwA0AGIANQAwADkANgAwADcAZAA3AA=="
 $debugMode = $false
-$scriptVersion = "1.0.5"
+$scriptVersion = "1.0.0" # Corrected version
 
 # =========================
-#   PASSWORD PROMPT & DECRYPT
+#   WELCOME MESSAGE
 # =========================
-
-
+Write-Host "========================================="
+Write-Host " Welcome to the Remote Tool Setup Script"
+Write-Host "  For support or questions, contact IT. v$scriptVersion "
+Write-Host "=========================================" -ForegroundColor Cyan
 
 # =========================
 #   DECRYPTION HELPERS
 # =========================
+
+function Convert-HexStringToByteArray {
+    param([string]$HexString)
+    $HexString = $HexString -replace "[^0-9a-fA-F]" # Remove non-hex characters if any
+    if ($HexString.Length % 2 -ne 0) {
+        Write-Error "Hex string must have an even number of characters."
+        return $null
+    }
+    $bytes = New-Object byte[] ($HexString.Length / 2)
+    for ($i = 0; $i -lt $HexString.Length; $i += 2) {
+        $bytes[$i/2] = [System.Convert]::ToByte($HexString.Substring($i, 2), 16)
+    }
+    return $bytes
+}
 
 function Get-AesKeyFromPassword {
     param([Parameter(Mandatory)][System.Security.SecureString]$Password)
@@ -37,39 +53,91 @@ function Get-AesKeyFromPassword {
 
 function Decrypt-Secret {
     param(
-        [Parameter(Mandatory)][string]$Encrypted,
+        [Parameter(Mandatory)][string]$EncryptedStringWithIvAndMetadata,
         [Parameter(Mandatory)][byte[]]$Key
     )
-    $secure = $Encrypted | ConvertTo-SecureString -Key $Key
-    return [System.Net.NetworkCredential]::new("", $secure).Password
+    try {
+        $parts = $EncryptedStringWithIvAndMetadata.Split('|')
+        if ($parts.Length -ne 2) {
+            Write-Error "Encrypted string format is invalid. Expected 'IV_Part|CipherText_Part'. Input: '$($EncryptedStringWithIvAndMetadata.Substring(0, [System.Math]::Min($EncryptedStringWithIvAndMetadata.Length, 30)))...'"
+            return $null
+        }
+
+        $ivPartEncoded = $parts[0]
+        $cipherTextPartEncoded = $parts[1]
+
+        # Process IV Part
+        # The marker "MgB8A" is assumed to be literal, based on analysis of the encrypted string structure.
+        # It appears after a 32-character hex prefix (e.g., "76492d1116743f0423413b16050a5345")
+        $marker = "MgB8A"
+        $markerPos = $ivPartEncoded.IndexOf($marker)
+        if ($markerPos -lt 0) {
+            Write-Error "Marker '$marker' not found in IV part: '$($ivPartEncoded.Substring(0, [System.Math]::Min($ivPartEncoded.Length, 50)))...'"
+            return $null
+        }
+        # The actual Base64(UTF16(Base64(IV_Bytes))) starts after the marker
+        $outerBase64Iv = $ivPartEncoded.Substring($markerPos + $marker.Length)
+
+        $utf16BytesOfBase64Iv = [System.Convert]::FromBase64String($outerBase64Iv)
+        $actualBase64IvString = [System.Text.Encoding]::Unicode.GetString($utf16BytesOfBase64Iv)
+        $ivBytes = [System.Convert]::FromBase64String($actualBase64IvString)
+
+        # Process CipherText Part
+        $utf16BytesOfHexCipherText = [System.Convert]::FromBase64String($cipherTextPartEncoded)
+        $hexCipherTextString = [System.Text.Encoding]::Unicode.GetString($utf16BytesOfHexCipherText)
+        $encryptedBytes = Convert-HexStringToByteArray -HexString $hexCipherTextString
+        if (-not $encryptedBytes) {
+            Write-Error "Failed to convert hex ciphertext to byte array."
+            return $null
+        }
+
+        $aes = New-Object System.Security.Cryptography.AesCryptoServiceProvider
+        $aes.Key = $Key
+        $aes.IV = $ivBytes
+        $aes.Mode = [System.Security.Cryptography.CipherMode]::CBC # Assuming CBC mode
+        $aes.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7 # Assuming PKCS7 padding
+
+        $decryptor = $aes.CreateDecryptor()
+        $plainBytes = $decryptor.TransformFinalBlock($encryptedBytes, 0, $encryptedBytes.Length)
+        $aes.Dispose()
+
+        return [System.Text.Encoding]::UTF8.GetString($plainBytes)
+    } catch {
+        Write-Error "Decryption failed: $($_.Exception.Message). Ensure the encryption method (AES CBC with PKCS7 padding assumed), key derivation, and encrypted string format are correct. Input string prefix: '$($EncryptedStringWithIvAndMetadata.Substring(0, [System.Math]::Min($EncryptedStringWithIvAndMetadata.Length, 50)))...'"
+        return $null
+    }
 }
 
-
-
-Write-Host "========================================="
-Write-Host " Welcome to the Remote Tool Setup Script"
-Write-Host "  For support or questions, contact IT. v$scriptVersion "
-Write-Host "=========================================" -ForegroundColor Cyan
-
+# =========================
+#   PASSWORD PROMPT & DECRYPT
+# =========================
 
 # Prompt for password at script start
 $password = Read-Host "Enter script password" -AsSecureString
 $key = Get-AesKeyFromPassword -Password $password
 
+# Wrapper function to simplify calls to Decrypt-Secret
 function Get-DecryptedSecret {
-    param([string]$enc)
-    return Decrypt-Secret -Encrypted $enc -Key $key
+    param([string]$encString)
+    # $key is a script-scoped variable derived from the user's password
+    return Decrypt-Secret -EncryptedStringWithIvAndMetadata $encString -Key $key
 }
 
-
 # Decrypt secrets at runtime
-$anydeskUrl      = Get-DecryptedSecret $anydeskUrlEnc
-$anydeskPassword = Get-DecryptedSecret $anydeskPasswordEnc
-$telegramBotToken= Get-DecryptedSecret $telegramBotTokenEnc
-$telegramChatId  = Get-DecryptedSecret $telegramChatIdEnc
-$vcredistUrl     = Get-DecryptedSecret $vcredistUrlEnc
-$vboxUrl         = Get-DecryptedSecret $vboxUrlEnc
-$vboxExtUrl      = Get-DecryptedSecret $vboxExtUrlEnc
+# The original variables holding encrypted strings are overwritten with decrypted values.
+$anydeskUrl       = Get-DecryptedSecret $anydeskUrl
+$anydeskPassword  = Get-DecryptedSecret $anydeskPassword
+$telegramBotToken = Get-DecryptedSecret $telegramBotToken
+$telegramChatId   = Get-DecryptedSecret $telegramChatId
+$vcredistUrl      = Get-DecryptedSecret $vcredistUrl
+$vboxUrl          = Get-DecryptedSecret $vboxUrl
+$vboxExtUrl       = Get-DecryptedSecret $vboxExtUrl
+
+# Check if any decryption failed (optional, but good practice)
+if (-not ($anydeskUrl -and $anydeskPassword -and $telegramBotToken -and $telegramChatId -and $vcredistUrl -and $vboxUrl -and $vboxExtUrl)) {
+    Write-Error "One or more secrets failed to decrypt. Please check the password and the encrypted strings. Exiting."
+    exit 1
+}
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -91,7 +159,7 @@ function New-DownloadTempFolder {
 }
 
 function Get-AnyDeskPassword {
-    return $anydeskPassword
+    return $anydeskPassword # This now returns the decrypted password
 }
 
 function Set-BulgariaLocaleAndTime {
@@ -154,11 +222,15 @@ function Set-AnyDeskPassword {
         Write-Host "[!] AnyDesk.exe not found in standard locations. Password not set."
         return
     }
-    $anydeskPassword = Get-AnyDeskPassword
-    $cmd = "echo $anydeskPassword | `"$anydeskExe`" --set-password"
+    $adPass = Get-AnyDeskPassword # Gets the decrypted password
+    $cmd = "echo $adPass | `"$anydeskExe`" --set-password"
     Write-DebugMsg "Running: $cmd"
-    cmd.exe /c $cmd | Out-Null
-    Write-Host "[✓] Password set via AnyDesk CLI."
+    try {
+        Invoke-Expression $cmd | Out-Null # Using Invoke-Expression for commands with pipes
+        Write-Host "[✓] Password set via AnyDesk CLI."
+    } catch {
+        Write-Host "[!] Failed to set AnyDesk password: $_"
+    }
 }
 
 function Get-AnyDeskID {
@@ -200,9 +272,9 @@ function Wait-ForAnyDeskID {
 }
 
 function Send-TelegramMessage($message) {
-    $url = "https://api.telegram.org/bot$telegramBotToken/sendMessage"
+    $url = "https://api.telegram.org/bot$telegramBotToken/sendMessage" # Uses decrypted token
     $params = @{
-        chat_id = $telegramChatId
+        chat_id = $telegramChatId # Uses decrypted chat ID
         text    = $message
     }
     try {
@@ -277,7 +349,7 @@ function Install-AnyDesk {
     }
 
     Write-Host "[+] Downloading AnyDesk..."
-    Invoke-WebRequest -Uri $anydeskUrl -OutFile $anydeskInstaller
+    Invoke-WebRequest -Uri $anydeskUrl -OutFile $anydeskInstaller # Uses decrypted URL
 
     Write-Host "[+] Installing AnyDesk with full arguments..."
     $installArgs = '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --create-desktop-icon --silent'
@@ -311,18 +383,18 @@ function Scan-NetworkUsedIPs {
         return
     }
     $choices = @()
-    $i = 1
+    $idx = 1 # Renamed from $i to avoid conflict if $i is used elsewhere
     foreach ($adapter in $adapters) {
         $subnet = ($adapter.IPAddress -replace '\d+$','')
         $choices += [PSCustomObject]@{
-            Index = $i
+            Index = $idx
             InterfaceAlias = $adapter.InterfaceAlias
             IPAddress = $adapter.IPAddress
             PrefixLength = $adapter.PrefixLength
             Subnet = $subnet
         }
-        Write-Host ("[{0}] {1} - {2}/{3}" -f $i, $adapter.InterfaceAlias, $adapter.IPAddress, $adapter.PrefixLength)
-        $i++
+        Write-Host ("[{0}] {1} - {2}/{3}" -f $idx, $adapter.InterfaceAlias, $adapter.IPAddress, $adapter.PrefixLength)
+        $idx++
     }
     $sel = Read-Host "Select network to scan (enter number)"
     if ($sel -notmatch '^\d+$' -or [int]$sel -lt 1 -or [int]$sel -gt $choices.Count) {
@@ -337,31 +409,33 @@ function Scan-NetworkUsedIPs {
     $results = @()
     $maxConcurrentJobs = 32
     $jobs = @()
-    foreach ($i in 1..254) {
-        $target = "$base$i"
+    foreach ($i_scan in 1..254) { # Renamed loop variable
+        $target = "$base$i_scan"
         while (@(Get-Job -State "Running").Count -ge $maxConcurrentJobs) {
             Start-Sleep -Milliseconds 100
         }
         $jobs += Start-Job -ScriptBlock {
-            param($target)
-            $ping = "$env:SystemRoot\System32\ping.exe"
-            $null = & $ping -n 1 -w 500 $target
+            param($targetToPing) # Renamed param for clarity
+            $pingExe = "$env:SystemRoot\System32\ping.exe" # Use variable for executable
+            $null = & $pingExe -n 1 -w 500 $targetToPing
             if ($LASTEXITCODE -eq 0) {
                 # Get hostname
                 try {
-                    $hostname = ([System.Net.Dns]::GetHostEntry($target)).HostName
+                    $hostname = ([System.Net.Dns]::GetHostEntry($targetToPing)).HostName
                 } catch { $hostname = "" }
                 # Get MAC from ARP
-                $arp = arp -a $target | Select-String $target
-                if ($arp) {
-                    $mac = ($arp -split '\s+')[-2]
-                } else {
-                    $mac = ""
+                $arpOutput = arp -a $targetToPing | Select-String $targetToPing
+                $macAddress = "" # Initialize
+                if ($arpOutput) {
+                    # Regex to extract MAC address more reliably
+                    if ($arpOutput -match '([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})') {
+                        $macAddress = $Matches[0]
+                    }
                 }
                 [PSCustomObject]@{
-                    IP = $target
+                    IP = $targetToPing
                     Hostname = $hostname
-                    MAC = $mac
+                    MAC = $macAddress
                 }
             }
         } -ArgumentList $target
@@ -376,7 +450,7 @@ function Scan-NetworkUsedIPs {
     if ($results.Count -eq 0) {
         Write-Host "No active hosts found."
     } else {
-        $results | Sort-Object IP | Format-Table -AutoSize
+        $results | Sort-Object {[version]$_.IP} | Format-Table -AutoSize # Sort IP as version for correct numeric sorting
     }
     Write-Host "`n[*] Scan complete.`n"
 }
@@ -394,7 +468,8 @@ function Set-PowerSettingsNever {
 
     # Get the active power scheme GUID robustly
     $schemeLine = powercfg /getactivescheme
-    if ($schemeLine -match '([a-fA-F0-9\-]{36})') {
+    $scheme = $null
+    if ($schemeLine -match '([a-fA-F0-9]{8}-([a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12})') { # More specific GUID regex
         $scheme = $matches[1]
     } else {
         Write-Host "[!] Could not determine active power scheme GUID."
@@ -407,7 +482,7 @@ function Set-PowerSettingsNever {
     powercfg /setacvalueindex $scheme $diskSubGroup $diskSetting 0
     powercfg /setdcvalueindex $scheme $diskSubGroup $diskSetting 0
 
-    # Disable USB selective suspend (set to 0) using GUIDs from your system
+    # Disable USB selective suspend (set to 0) using GUIDs
     $usbSubGroup = "2a737441-1930-4402-8d77-b2bebba308a3"
     $usbSetting = "48e6b7a6-50f5-4782-a5d4-53bb8f07e226"
     powercfg /setacvalueindex $scheme $usbSubGroup $usbSetting 0
@@ -446,8 +521,8 @@ function Send-CustomTelegramMessage {
         Write-Host "[!] No message entered. Aborting."
         return
     }
-    Send-TelegramMessage $message
-    Write-Host "[✓] Message sent to Telegram."
+    Send-TelegramMessage $message # Uses the main Send-TelegramMessage function
+    # Write-Host "[✓] Message sent to Telegram." # Already handled by Send-TelegramMessage
 }
 
 # --- VirtualBox Modular Install Functions and Submenu ---
@@ -457,7 +532,7 @@ function Install-Vcredist {
     $vcredistPath = Join-Path $downloadFolder "vc_redist.x64.exe"
     Write-Host "[*] Downloading Visual C++ Redistributable..."
     try {
-        Invoke-WebRequest -Uri $vcredistUrl -OutFile $vcredistPath -UseBasicParsing
+        Invoke-WebRequest -Uri $vcredistUrl -OutFile $vcredistPath -UseBasicParsing # Uses decrypted URL
         Write-Host "[✓] Downloaded vcredist."
         Write-Host "[*] Installing vcredist..."
         Start-Process -FilePath $vcredistPath -ArgumentList "/install /quiet /norestart" -Wait
@@ -473,7 +548,7 @@ function Install-VirtualBoxOnly {
     $vboxPath = Join-Path $downloadFolder "VirtualBox-Installer.exe"
     Write-Host "[*] Downloading VirtualBox installer..."
     try {
-        Invoke-WebRequest -Uri $vboxUrl -OutFile $vboxPath -UseBasicParsing
+        Invoke-WebRequest -Uri $vboxUrl -OutFile $vboxPath -UseBasicParsing # Uses decrypted URL
         Write-Host "[✓] Downloaded VirtualBox."
         Write-Host "[*] Installing VirtualBox..."
         Start-Process -FilePath $vboxPath -ArgumentList "--silent --ignore-reboot" -Wait
@@ -486,11 +561,12 @@ function Install-VirtualBoxOnly {
 
 function Install-VBoxExtPack {
     $downloadFolder = New-DownloadTempFolder
+    # NOTE: This filename is hardcoded. If $vboxExtUrl points to a different version, this may need updating.
     $vboxExtFileName = "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
     $vboxExtPath = Join-Path $downloadFolder $vboxExtFileName
     Write-Host "[*] Downloading VirtualBox Extension Pack..."
     try {
-        Invoke-WebRequest -Uri $vboxExtUrl -OutFile $vboxExtPath -UseBasicParsing
+        Invoke-WebRequest -Uri $vboxExtUrl -OutFile $vboxExtPath -UseBasicParsing # Uses decrypted URL
         Write-Host "[✓] Downloaded Extension Pack."
         # Find VBoxManage.exe
         $vboxManage = "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe"
@@ -502,7 +578,9 @@ function Install-VBoxExtPack {
             return
         }
         Write-Host "[*] Importing Extension Pack..."
-        Start-Process -FilePath $vboxManage -ArgumentList "extpack", "install", "--replace", "`"$vboxExtPath`"","--accept-license=eb31505e56e9b4d0fbca139104da41ac6f6b98f8e78968bdf01b1f3da3c4f9ae" -Wait -NoNewWindow
+        # NOTE: This license hash is version-specific. Update if the Extension Pack version changes.
+        $extPackArgs = "extpack install --replace `"$vboxExtPath`" --accept-license=eb31505e56e9b4d0fbca139104da41ac6f6b98f8e78968bdf01b1f3da3c4f9ae"
+        Start-Process -FilePath $vboxManage -ArgumentList $extPackArgs -Wait -NoNewWindow
         Write-Host "[✓] Extension Pack imported."
     } catch {
         Write-Host "[!] Failed to download or import Extension Pack: $_"
@@ -522,19 +600,7 @@ function Install-VirtualBox-Menu {
         Write-Host "--------------------------------------"
         $subChoice = Read-Host "Select an option (Enter for ALL)"
         switch ($subChoice.ToLower()) {
-            "" {
-                # Default: Install ALL
-                Install-Vcredist
-                Write-Host "[*] Waiting 5 seconds before next step..."
-                Start-Sleep -Seconds 5
-                Install-VirtualBoxOnly
-                Write-Host "[*] Waiting 5 seconds before next step..."
-                Start-Sleep -Seconds 5
-                Install-VBoxExtPack
-                Write-Host "[✓] All VirtualBox components installed."
-                Write-Host "`nPress Enter to return to the VirtualBox menu..."
-                Read-Host
-            }
+            "" 
             "1" {
                 Install-Vcredist
                 Write-Host "[*] Waiting 5 seconds before next step..."
@@ -578,14 +644,14 @@ function Check-VTDStatus {
     Write-Host "========== VT-d (Intel Virtualization Technology for Directed I/O) Status ==========" -ForegroundColor Cyan
 
     # Try WMI first
-    $vtdWmi = Get-WmiObject -Namespace "root\CIMV2" -Class Win32_Processor | Select-Object -ExpandProperty VirtualizationFirmwareEnabled -ErrorAction SilentlyContinue
-    if ($vtdWmi -ne $null -and $vtdWmi -ne "") {
-        Write-Host "[*] VT-d/VirtualizationFirmwareEnabled: $vtdWmi" -ForegroundColor Green
+    $vtdWmi = Get-WmiObject -Namespace "root\CIMV2" -Class Win32_Processor -ErrorAction SilentlyContinue | Select-Object -ExpandProperty VirtualizationFirmwareEnabled
+    if ($null -ne $vtdWmi) { # Check if $vtdWmi is not null explicitly
+        Write-Host "[*] VT-d/VirtualizationFirmwareEnabled (WMI): $vtdWmi" -ForegroundColor Green
     } else {
         # Fallback: Try systeminfo
         $sysinfo = systeminfo | Select-String "Virtualization Enabled In Firmware"
         if ($sysinfo) {
-            Write-Host "[*] VT-d/Virtualization status (systeminfo): $($sysinfo.ToString())" -ForegroundColor Green
+            Write-Host "[*] VT-d/Virtualization status (systeminfo): $($sysinfo.ToString().Trim())" -ForegroundColor Green
         } else {
             Write-Host "[!] Could not determine VT-d status automatically. Please check BIOS/UEFI settings manually." -ForegroundColor Yellow
         }
@@ -600,45 +666,54 @@ function Check-VTDStatus {
 function Apply-HypeFirewallRules {
     Write-Host "[*] Adding Hype firewall rules for ports 8001 and 8002..." -ForegroundColor Cyan
 
-    $rule1 = 'netsh advfirewall firewall add rule name="Hype 8001" dir=in action=allow protocol=TCP localport=8001 remoteip=87.121.112.82,LocalSubnet profile=public,private,domain'
-    $rule2 = 'netsh advfirewall firewall add rule name="Hype 8002" dir=in action=allow protocol=TCP localport=8002 remoteip=87.121.112.82,LocalSubnet profile=public,private,domain'
+    $rule1Name = "Hype 8001"
+    $rule2Name = "Hype 8002"
 
-    Write-Host "  - Adding rule for port 8001..."
-    Invoke-Expression $rule1
+    # Check if rules exist before adding
+    if (-not (Get-NetFirewallRule -DisplayName $rule1Name -ErrorAction SilentlyContinue)) {
+        Write-Host "  - Adding rule for port 8001..."
+        New-NetFirewallRule -DisplayName $rule1Name -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8001 -RemoteAddress "87.121.112.82","LocalSubnet" -Profile Any
+    } else {
+        Write-Host "  - Firewall rule '$rule1Name' already exists."
+    }
 
-    Write-Host "  - Adding rule for port 8002..."
-    Invoke-Expression $rule2
-
-    Write-Host "[✓] Hype firewall rules applied."
+    if (-not (Get-NetFirewallRule -DisplayName $rule2Name -ErrorAction SilentlyContinue)) {
+        Write-Host "  - Adding rule for port 8002..."
+        New-NetFirewallRule -DisplayName $rule2Name -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8002 -RemoteAddress "87.121.112.82","LocalSubnet" -Profile Any
+    } else {
+        Write-Host "  - Firewall rule '$rule2Name' already exists."
+    }
+    Write-Host "[✓] Hype firewall rules checked/applied."
 }
 
 function Apply-RegFixes {
     Write-Host "[*] Applying registry fixes..." -ForegroundColor Cyan
+    $regPath = "HKEY_USERS\.DEFAULT\Control Panel\Desktop"
 
     # Set AutoEndTasks = 1
-    Write-Host "  - Setting AutoEndTasks=1 for all users..."
-    reg.exe add "HKEY_USERS\.DEFAULT\Control Panel\Desktop" /v AutoEndTasks /t REG_SZ /d 1 /f | Out-Null
+    Write-Host "  - Setting AutoEndTasks=1 for default user profile..."
+    Set-ItemProperty -Path "Registry::$regPath" -Name AutoEndTasks -Value "1" -Type String -Force
 
     # Set HungAppTimeout = 10000
-    Write-Host "  - Setting HungAppTimeout=10000 for all users..."
-    reg.exe add "HKEY_USERS\.DEFAULT\Control Panel\Desktop" /v HungAppTimeout /t REG_SZ /d 10000 /f | Out-Null
+    Write-Host "  - Setting HungAppTimeout=10000 for default user profile..."
+    Set-ItemProperty -Path "Registry::$regPath" -Name HungAppTimeout -Value "10000" -Type String -Force
 
-    Write-Host "[✓] Registry fixes applied."
+    Write-Host "[✓] Registry fixes applied to default user profile."
+    Write-Host "[i] Note: These registry settings apply to new user profiles or those based on the default."
+    Write-Host "[i] For the current user, these settings might require a logoff/login or might be applied differently."
 }
-
-
 
 # =========================
 #      FIXES SUBMENU
 # =========================
 
 function Show-FixesMenu {
-#    Clear-Host
+    Write-Host ""
     Write-Host "========== Fixes & Configuration ==========" -ForegroundColor Cyan
     Write-Host "[1] Set Bulgaria Locale/Time/Keyboard"
     Write-Host "[2] Set Power Settings to Never Sleep/Standby/Spin Down"
     Write-Host "[3] Apply Firewall Rules"
-    Write-Host "[4] Apply Registry Fixes"
+    Write-Host "[4] Apply Registry Fixes (for default user profile)"
     Write-Host "[5] Open Device Manager"
     Write-Host "[b] Back to main menu"
     Write-Host "==========================================="
@@ -652,27 +727,27 @@ function Fixes-Menu-Loop {
             "1" {
                 Set-BulgariaLocaleAndTime
                 Write-Host "`nPress Enter to return to the Fixes menu..."
-                Read-Host
+                Read-Host | Out-Null
             }
             "2" {
                 Set-PowerSettingsNever
                 Write-Host "`nPress Enter to return to the Fixes menu..."
-                Read-Host
+                Read-Host | Out-Null
             }
             "3" {
                 Apply-HypeFirewallRules
                 Write-Host "`nPress Enter to return to the Fixes menu..."
-                Read-Host
+                Read-Host | Out-Null
             }
             "4" {
                 Apply-RegFixes
                 Write-Host "`nPress Enter to return to the Fixes menu..."
-                Read-Host
+                Read-Host | Out-Null
             }
             "5" {
                 Open-DeviceManager
                 Write-Host "`nPress Enter to return to the Fixes menu..."
-                Read-Host
+                Read-Host | Out-Null
             }
             "b" {
                 return
@@ -680,18 +755,18 @@ function Fixes-Menu-Loop {
             default {
                 Write-Host "Invalid choice."
                 Write-Host "`nPress Enter to return to the Fixes menu..."
-                Read-Host
+                Read-Host | Out-Null
             }
         }
     }
 }
 
 # =========================
-#      MAIN MENU (UPDATED)
+#      MAIN MENU
 # =========================
 
 function Show-Menu {
-#    Clear-Host
+    Write-Host ""
     Write-Host "========== Remote Tool Setup v$scriptVersion ==========" -ForegroundColor Cyan
     Write-Host "[1] Fixes & Configuration"
     Write-Host "[2] Install AnyDesk"
@@ -703,6 +778,7 @@ function Show-Menu {
     Check-VTDStatus
 }
 
+# Main script loop
 while ($true) {
     Show-Menu
     $choice = Read-Host "Enter choice"
@@ -714,17 +790,17 @@ while ($true) {
         "2" {
             Install-AnyDesk
             Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
+            Read-Host | Out-Null
         }
         "3" {
             Scan-NetworkUsedIPs
             Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
+            Read-Host | Out-Null
         }
         "4" {
             Send-CustomTelegramMessage
             Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
+            Read-Host | Out-Null
         }
         "5" {
             Install-VirtualBox-Menu
@@ -736,8 +812,8 @@ while ($true) {
         default {
             Write-Host "Invalid choice."
             Write-Host "`nPress Enter to return to the menu..."
-            Read-Host
+            Read-Host | Out-Null
         }
     }
 }
-exit
+exit 0 # Explicit exit code
