@@ -83,7 +83,7 @@ function Get-AnyDeskPassword {
 }
 
 function Set-BulgariaLocaleAndTime {
-    Write-Host "[*] Setting region to Bulgaria (BG)..."
+    Write-Host "[*] Setting region to Bulgaria  (BG)..."
     Set-WinSystemLocale -SystemLocale bg-BG
     Set-Culture bg-BG
 
