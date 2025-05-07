@@ -125,15 +125,6 @@ function Set-BulgariaLocaleAndTime {
     }
 }
 
-Write-Host "[*] Syncing system time with NTP server..."
-    try {
-        w32tm /resync | Out-Null
-        Write-Host "[✓] Time synchronized."
-    } catch {
-        Write-Host "[!] Failed to sync time: $_"
-    }
-}
-
 function Set-AnyDeskPassword {
     Write-Host "[*] Setting AnyDesk password using CLI..."
     $exePaths = @(
