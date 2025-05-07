@@ -15,24 +15,6 @@ $debugMode = $false
 $scriptVersion = "1.0.3"
 
 # =========================
-#   PASSWORD PROMPT & DECRYPT
-# =========================
-Write-Host "========================================="
-Write-Host " Welcome to the Remote Tool Setup Script"
-Write-Host "  For support or questions, contact IT. v$scriptVersion "
-Write-Host "=========================================" -ForegroundColor Cyan
-
-
-# Prompt for password at script start
-$password = Read-Host "Enter script password" -AsSecureString
-$key = Get-AesKeyFromPassword -Password $password
-
-function Get-DecryptedSecret {
-    param([string]$enc)
-    return Decrypt-Secret -Encrypted $enc -Key $key
-}
-
-# =========================
 #   DECRYPTION HELPERS
 # =========================
 
@@ -64,6 +46,27 @@ $telegramChatId  = Get-DecryptedSecret $telegramChatIdEnc
 $vcredistUrl     = Get-DecryptedSecret $vcredistUrlEnc
 $vboxUrl         = Get-DecryptedSecret $vboxUrlEnc
 $vboxExtUrl      = Get-DecryptedSecret $vboxExtUrlEnc
+
+
+
+# =========================
+#   PASSWORD PROMPT & DECRYPT
+# =========================
+Write-Host "========================================="
+Write-Host " Welcome to the Remote Tool Setup Script"
+Write-Host "  For support or questions, contact IT. v$scriptVersion "
+Write-Host "=========================================" -ForegroundColor Cyan
+
+
+# Prompt for password at script start
+$password = Read-Host "Enter script password" -AsSecureString
+$key = Get-AesKeyFromPassword -Password $password
+
+function Get-DecryptedSecret {
+    param([string]$enc)
+    return Decrypt-Secret -Encrypted $enc -Key $key
+}
+
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -406,6 +409,9 @@ function Set-PowerSettingsNever {
     $usbSetting = "48e6b7a6-50f5-4782-a5d4-53bb8f07e226"
     powercfg /setacvalueindex $scheme $usbSubGroup $usbSetting 0
     powercfg /setdcvalueindex $scheme $usbSubGroup $usbSetting 0
+
+    # Disable hibernation
+    powercfg /hibernate off
 
     # Apply the changes
     powercfg /S $scheme
