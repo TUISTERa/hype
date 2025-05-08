@@ -2,22 +2,20 @@
 #      CONFIG (PLAINTEXT)
 # =========================
 
-# -- IMPORTANT: Ensure these placeholders are replaced with your ACTUAL plaintext values if necessary --
-# -- However, the script now assumes these are correctly set and won't check for "REPLACE_WITH..." strings --
-
 $baseUrl = "http://sh.itpcloud.biz/" # Define the base URL once
 
 $anydeskUrl = $baseUrl + "anydesk.exe"
 $vcredistUrl = $baseUrl + "vcredistx64.exe"
 $vboxUrl = $baseUrl + "virtualbox.exe"
 $vboxExtUrl = $baseUrl + "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
+$chromeUrl = $baseUrl + "chrome.exe" # Added Chrome URL
 
 $anydeskPassword = "hype1234"
 $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.3" # Updated version due to URL refactoring
+$scriptVersion = "1.0.4" # Updated version for Chrome addition
 
 # =========================
 #   WELCOME MESSAGE
@@ -27,6 +25,9 @@ Write-Host " Welcome to the Remote Tool Setup Script"
 Write-Host "  For support or questions, contact IT. v$scriptVersion "
 Write-Host "  WARNING: This version uses plaintext secrets."
 Write-Host "=========================================" -ForegroundColor Cyan
+
+# Run VT check once at startup
+Check-VTDStatus
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -807,6 +808,46 @@ function Fixes-Menu-Loop {
     }
 }
 
+function Install-Chrome {
+    if (-not $chromeUrl) {
+        Write-Warning "[!] Chrome URL is not set. Skipping Chrome installation."
+        return
+    }
+    
+    $installPaths = @(
+        "${env:ProgramFiles}\Google\Chrome\Application\chrome.exe",
+        "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
+    )
+    
+    foreach ($path in $installPaths) {
+        if (Test-Path $path) {
+            Write-Host "[!] Chrome is already installed at $path" -ForegroundColor Yellow
+            return
+        }
+    }
+
+    $downloadFolder = New-DownloadTempFolder
+    $chromeInstaller = Join-Path $downloadFolder "chrome_installer.exe"
+    
+    Write-Host "[+] Downloading Chrome from $chromeUrl..."
+    try {
+        Invoke-WebRequest -Uri $chromeUrl -OutFile $chromeInstaller -ErrorAction Stop
+    } catch {
+        Write-Error "Failed to download Chrome: $($_.Exception.Message)"
+        return
+    }
+
+    Write-Host "[+] Installing Chrome silently..."
+    try {
+        $installArgs = "/silent /install"
+        Start-Process -FilePath $chromeInstaller -ArgumentList $installArgs -Wait -ErrorAction Stop
+        Write-Host "[✓] Chrome installed successfully."
+    } catch {
+        Write-Error "Failed to install Chrome: $($_.Exception.Message)"
+    }
+}
+
+# Updated main menu
 function Show-Menu {
     Write-Host "========== Remote Tool Setup v$scriptVersion ==========" -ForegroundColor Cyan
     Write-Host "[1] Fixes & Configuration"
@@ -814,37 +855,22 @@ function Show-Menu {
     Write-Host "[3] Scan Network for Used IP Addresses"
     Write-Host "[4] Send Custom Telegram Message"
     Write-Host "[5] Install VirtualBox Suite"
+    Write-Host "[6] Install Google Chrome" # New option
     Write-Host "[x] Exit"
     Write-Host "======================================="
-    Check-VTDStatus # Display VT status with main menu
 }
 
-# Main script execution loop
+# Updated main loop
 while ($true) {
     Show-Menu
     $choice = Read-Host "Enter choice"
     switch ($choice.ToLower()) {
-        "1" {
-            Fixes-Menu-Loop
-        }
-        "2" {
-            Install-AnyDesk
-            Write-Host "`nPress Enter to return to the menu..."
-            Read-Host | Out-Null
-        }
-        "3" {
-            Scan-NetworkUsedIPs
-            Write-Host "`nPress Enter to return to the menu..."
-            Read-Host | Out-Null
-        }
-        "4" {
-            Send-CustomTelegramMessage
-            Write-Host "`nPress Enter to return to the menu..." # This might be redundant if Send-CustomTelegramMessage handles its own pause
-            Read-Host | Out-Null
-        }
-        "5" {
-            Install-VirtualBox-Menu # This function has its own loop and "back" option
-        }
+        "1" { Fixes-Menu-Loop }
+        "2" { Install-AnyDesk }
+        "3" { Scan-NetworkUsedIPs }
+        "4" { Send-CustomTelegramMessage }
+        "5" { Install-VirtualBox-Menu }
+        "6" { Install-Chrome } # New case
         "x" {
             Write-Host "Exiting..." -ForegroundColor Green
             Start-Sleep -Seconds 1
@@ -858,4 +884,3 @@ while ($true) {
     }
 }
 exit 0
-# The 'test' at the end of the original file was removed as it's not valid PowerShell outside a string/comment.
