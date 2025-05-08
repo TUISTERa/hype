@@ -608,7 +608,6 @@ function Install-VBoxExtPack {
 
 function Install-VirtualBox-Menu {
     while ($true) {
-        Write-Host ""
         Write-Host "---- VirtualBox Installation Menu ----" -ForegroundColor Cyan
         Write-Host "[1] Install ALL (vcredist, VirtualBox, Extension Pack) [default]"
         Write-Host "[2] Install Visual C++ Redistributable (vcredist)"
@@ -618,7 +617,6 @@ function Install-VirtualBox-Menu {
         Write-Host "--------------------------------------"
         $subChoice = Read-Host "Select an option (Enter for ALL)"
         switch ($subChoice.ToLower()) {
-            "" 
             "1" {
                 Install-Vcredist
                 Write-Host "[*] Waiting 5 seconds before next step..."
@@ -810,7 +808,6 @@ function Fixes-Menu-Loop {
 }
 
 function Show-Menu {
-    Write-Host ""
     Write-Host "========== Remote Tool Setup v$scriptVersion ==========" -ForegroundColor Cyan
     Write-Host "[1] Fixes & Configuration"
     Write-Host "[2] Install AnyDesk & Send ID"
