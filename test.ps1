@@ -49,7 +49,6 @@ function New-DownloadTempFolder {
 }
 
 function Get-AnyDeskPassword {
-    # Returns the plaintext password directly
     if (-not $anydeskPassword) {
         Write-Warning "[!] AnyDesk password is not set. Please update the script."
         return $null
@@ -67,27 +66,24 @@ function Set-BulgariaLocaleAndTime {
 
     Write-Host "[*] Setting keyboard layouts: Bulgarian Traditional Phonetic and US..."
 
-    # Create Bulgarian with only Traditional Phonetic
     $bgList = New-WinUserLanguageList bg-BG
     if ($bgList.Count -ge 1) {
         $bgList[0].InputMethodTips.Clear()
-        $bgList[0].InputMethodTips.Add("0402:00040402") # Bulgarian Traditional Phonetic
+        $bgList[0].InputMethodTips.Add("0402:00040402")
     } else {
         Write-Host "[!] Could not create Bulgarian language list."
         return
     }
 
-    # Create US English with only US layout
     $usList = New-WinUserLanguageList en-US
     if ($usList.Count -ge 1) {
         $usList[0].InputMethodTips.Clear()
-        $usList[0].InputMethodTips.Add("0409:00000409") # US
+        $usList[0].InputMethodTips.Add("0409:00000409")
     } else {
         Write-Host "[!] Could not create US English language list."
         return
     }
 
-    # Combine into a single list
     $langList = @($bgList[0], $usList[0])
     Set-WinUserLanguageList $langList -Force
 
@@ -117,18 +113,15 @@ function Set-AnyDeskPassword {
         Write-Host "[!] AnyDesk.exe not found in standard locations. Password not set."
         return
     }
-    $adPass = Get-AnyDeskPassword # Gets the plaintext password
+    $adPass = Get-AnyDeskPassword
     if (-not $adPass) {
-        Write-Warning "[!] AnyDesk password is not available (likely not set in script). Skipping password set."
+        Write-Warning "[!] AnyDesk password is not available. Skipping password set."
         return
     }
     
     Write-DebugMsg "Attempting to set AnyDesk password for $anydeskExe"
     try {
-        # Use direct PowerShell piping to the external command
         $processOutput = ($adPass | & "$anydeskExe" --set-password 2>&1 | Out-String)
-        # AnyDesk CLI might not produce significant output on success or might output to stderr
-        # Check $LASTEXITCODE if AnyDesk.exe sets it reliably
         if ($LASTEXITCODE -eq 0) {
             Write-Host "[✓] Password set command executed for AnyDesk CLI."
             Write-DebugMsg "AnyDesk CLI output: $processOutput"
@@ -175,7 +168,7 @@ function Wait-ForAnyDeskID {
     $elapsed = 0
     while ($elapsed -lt $TimeoutSeconds) {
         $id = Get-AnyDeskID
-        if ($id -and $id -notmatch "not found|Could not locate") { # Basic check for valid-looking ID
+        if ($id -and $id -notmatch "not found|Could not locate") {
             return $id
         }
         Start-Sleep -Seconds $PollIntervalSeconds
@@ -190,9 +183,9 @@ function Send-TelegramMessage($message) {
         Write-Warning "[!] Telegram Bot Token or Chat ID is not set. Skipping message send."
         return
     }
-    $url = "https://api.telegram.org/bot$telegramBotToken/sendMessage" # Uses plaintext token
+    $url = "https://api.telegram.org/bot$telegramBotToken/sendMessage"
     $params = @{
-        chat_id = $telegramChatId # Uses plaintext chat ID
+        chat_id = $telegramChatId
         text    = $message
     }
     try {
@@ -218,7 +211,7 @@ function Is-AnyDeskInstalled {
     $confPath = "$env:ProgramData\AnyDesk\system.conf"
     if (Test-Path $confPath) {
         Write-DebugMsg "AnyDesk config found at $confPath"
-        return $true # Config file implies installation or attempted installation
+        return $true
     }
     Write-DebugMsg "AnyDesk not found."
     return $false
@@ -265,9 +258,6 @@ function Install-AnyDesk {
     $downloadFolder = New-DownloadTempFolder
     $anydeskInstaller = Join-Path $downloadFolder "anydesk_installer.exe"
     
-    # Setting locale can be done once, perhaps at script start or in a dedicated setup function if needed multiple times
-    # Set-BulgariaLocaleAndTime # Moved to Fixes menu, can be called if needed before this
-
     if (Is-AnyDeskInstalled) {
         Write-Host "[!] AnyDesk is already installed." -ForegroundColor Yellow
         Start-AnyDesk
@@ -275,7 +265,7 @@ function Install-AnyDesk {
         if ($comment.Trim() -ne "") {
             PrintAndSend-AnyDeskID -Comment $comment
         } else {
-             PrintAndSend-AnyDeskID # Send ID without comment if already installed
+             PrintAndSend-AnyDeskID
         }
         return
     }
@@ -299,25 +289,24 @@ function Install-AnyDesk {
     }
     
     Write-Host "[*] Waiting a few seconds for AnyDesk service to initialize..."
-    Start-Sleep -Seconds 5 # Give AnyDesk a moment to start its service and generate config
+    Start-Sleep -Seconds 5
 
-    # Start AnyDesk to ensure config and ID are generated if not started by installer
     Start-AnyDesk
-    Start-Sleep -Seconds 5 # Additional wait after starting
+    Start-Sleep -Seconds 5
 
     $id = Wait-ForAnyDeskID
     if ($id -notlike "*not found*") {
         Write-Host "[*] AnyDesk ID: $id" -ForegroundColor Green
         Set-AnyDeskPassword
     } else {
-        Write-Warning "[!] Could not retrieve AnyDesk ID after installation. Password setting might fail or be irrelevant."
-        Write-Warning "    $id" # Display the "not found" message from Wait-ForAnyDeskID
+        Write-Warning "[!] Could not retrieve AnyDesk ID after installation."
+        Write-Warning "    $id"
     }
 
     Write-Host "[✓] AnyDesk installation process completed."
 
     $comment = Read-Host "Enter a comment for the Telegram message (e.g., 'Server', 'Workstation', etc.)"
-    PrintAndSend-AnyDeskID -Comment $comment -Id $id # Pass ID to avoid re-fetching if already got it
+    PrintAndSend-AnyDeskID -Comment $comment -Id $id
 }
 
 function Scan-NetworkUsedIPs {
@@ -325,8 +314,8 @@ function Scan-NetworkUsedIPs {
     $adapters = Get-NetIPAddress -AddressFamily IPv4 | Where-Object {
         $_.IPAddress -notlike '169.254*' -and
         $_.IPAddress -ne '127.0.0.1' -and
-        $_.PrefixOrigin -ne 'WellKnown' -and # Exclude loopback, link-local, etc.
-        $_.InterfaceAlias -notlike "Loopback*" # Further ensure no loopback
+        $_.PrefixOrigin -ne 'WellKnown' -and
+        $_.InterfaceAlias -notlike "Loopback*"
     }
     if (-not $adapters) {
         Write-Host "[!] No suitable active network adapters found for scanning." -ForegroundColor Yellow
@@ -335,13 +324,13 @@ function Scan-NetworkUsedIPs {
     $choices = @()
     $idx = 1 
     foreach ($adapter in $adapters) {
-        $subnet = ($adapter.IPAddress -replace '\.\d+$','.') # More robust subnet extraction
+        $subnet = ($adapter.IPAddress -replace '\.\d+$','.')
         $choices += [PSCustomObject]@{
             Index = $idx
             InterfaceAlias = $adapter.InterfaceAlias
             IPAddress = $adapter.IPAddress
             PrefixLength = $adapter.PrefixLength
-            SubnetBase = $subnet # e.g., 192.168.1.
+            SubnetBase = $subnet
         }
         Write-Host ("[{0}] {1} - {2}/{3} (Subnet: {4}x)" -f $idx, $adapter.InterfaceAlias, $adapter.IPAddress, $adapter.PrefixLength, $subnet)
         $idx++
@@ -356,7 +345,7 @@ function Scan-NetworkUsedIPs {
         return
     }
     $selected = $choices[[int]$sel - 1]
-    $base = $selected.SubnetBase # e.g., 192.168.1.
+    $base = $selected.SubnetBase
     $ip = $selected.IPAddress
     Write-Host "`n[*] Scanning subnet: $($base)1 - $($base)254 (Your IP: $ip)`n" -ForegroundColor Cyan
 
@@ -366,7 +355,6 @@ function Scan-NetworkUsedIPs {
     1..254 | ForEach-Object {
         $i_scan = $_
         $target = "$base$i_scan"
-        # Skip scanning own IP if it falls in the range
         if ($target -eq $ip) { return } 
 
         while (@(Get-Job -State "Running").Count -ge $maxConcurrentJobs) {
@@ -374,14 +362,12 @@ function Scan-NetworkUsedIPs {
         }
         $jobs += Start-Job -ScriptBlock {
             param($targetToPing) 
-            # Using Test-Connection as it's a PowerShell cmdlet, more robust than parsing ping.exe
             if (Test-Connection -ComputerName $targetToPing -Count 1 -TimeoutSeconds 1 -Quiet) {
                 $hostname = try { (Resolve-DnsName -Name $targetToPing -Type A -ErrorAction SilentlyContinue).NameHost } catch { "" }
                 if (-not $hostname) {
                     try { $hostname = ([System.Net.Dns]::GetHostEntry($targetToPing).HostName) } catch { $hostname = "N/A" }
                 }
                 
-                # Get-NetNeighbor is more modern for MAC, but arp is fallback
                 $macAddress = ""
                 try {
                     $neighbor = Get-NetNeighbor -IPAddress $targetToPing -ErrorAction SilentlyContinue | Where-Object {$_.State -ne "Unreachable"}
@@ -418,7 +404,7 @@ function Scan-NetworkUsedIPs {
         $result = Receive-Job -Job $job
         if ($result) { $results += $result }
     }
-    Remove-Job -Job $jobs # Clean up jobs
+    Remove-Job -Job $jobs
 
     Write-Host "`n[*] Used IP addresses found:`n"
     if ($results.Count -eq 0) {
@@ -431,10 +417,8 @@ function Scan-NetworkUsedIPs {
 
 function Set-PowerSettingsNever {
     Write-Host "[*] Setting power settings to 'Never' for sleep, monitor, hard disk, and USB selective suspend..." -ForegroundColor Cyan
-    # AC Power Settings
     powercfg /change monitor-timeout-ac 0
     powercfg /change standby-timeout-ac 0
-    # DC Power Settings (for laptops, usually same for servers/desktops but good to set)
     powercfg /change monitor-timeout-dc 0
     powercfg /change standby-timeout-dc 0
     
@@ -444,37 +428,33 @@ function Set-PowerSettingsNever {
         $scheme = $matches[1]
         Write-DebugMsg "Active power scheme GUID: $scheme"
     } else {
-        Write-Warning "[!] Could not determine active power scheme GUID. Some settings may not apply."
-        # Fallback to trying to set for common schemes if GUID not found, or just proceed
+        Write-Warning "[!] Could not determine active power scheme GUID."
     }
 
     if ($scheme) {
-        # Hard disk timeout (0 = Never)
-        $diskSubGroup = "0012ee47-9041-4b5d-9b77-535fba8b1442" # SUB_DISK
-        $diskSetting = "6738e2c4-e8a5-4a42-b16a-e040e769756e"  # DISKIDLE
+        $diskSubGroup = "0012ee47-9041-4b5d-9b77-535fba8b1442"
+        $diskSetting = "6738e2c4-e8a5-4a42-b16a-e040e769756e"
         powercfg /setacvalueindex $scheme $diskSubGroup $diskSetting 0
         powercfg /setdcvalueindex $scheme $diskSubGroup $diskSetting 0
         
-        # USB selective suspend (0 = Disabled)
-        $usbSubGroup = "2a737441-1930-4402-8d77-b2bebba308a3" # SUB_USB
-        $usbSetting = "48e6b7a6-50f5-4782-a5d4-53bb8f07e226"  # USBSELECTSUSPEND
+        $usbSubGroup = "2a737441-1930-4402-8d77-b2bebba308a3"
+        $usbSetting = "48e6b7a6-50f5-4782-a5d4-53bb8f07e226"
         powercfg /setacvalueindex $scheme $usbSubGroup $usbSetting 0
         powercfg /setdcvalueindex $scheme $usbSubGroup $usbSetting 0
         
-        powercfg /S $scheme # Apply the current (now modified) scheme
+        powercfg /S $scheme
     }
     
-    # Hibernate Off
     powercfg /hibernate off
     
-    Write-Host "[✓] Power settings updated: No sleep, no monitor off, no HDD spin-down (for active scheme), USB selective suspend disabled (for active scheme), hibernate off."
+    Write-Host "[✓] Power settings updated."
     Write-Host "[i] Verification (current active scheme):"
     if ($scheme) {
         Write-Host "  Monitor Timeout (AC): $(powercfg /query $scheme SUB_VIDEO VIDEOIDLE | Select-String 'Current AC Power Setting Index' | ForEach-Object {$_.Line.Split(':')[-1].Trim()})"
         Write-Host "  Sleep Timeout (AC): $(powercfg /query $scheme SUB_SLEEP STANDBYIDLE | Select-String 'Current AC Power Setting Index' | ForEach-Object {$_.Line.Split(':')[-1].Trim()})"
         Write-Host "  Hard Disk Timeout (AC): $(powercfg /query $scheme $diskSubGroup $diskSetting | Select-String 'Current AC Power Setting Index' | ForEach-Object {$_.Line.Split(':')[-1].Trim()})"
     } else {
-        Write-Host "  Could not query specific scheme settings as GUID was not found."
+        Write-Host "  Could not query specific scheme settings."
     }
 }
 
@@ -495,7 +475,7 @@ function Send-CustomTelegramMessage {
         }
         $lines += $line
     }
-    $message = $lines -join "`n" # PowerShell uses `n for newline in strings
+    $message = $lines -join "`n"
     if (-not $message.Trim()) {
         Write-Host "[!] No message entered. Aborting."
         return
@@ -503,7 +483,90 @@ function Send-CustomTelegramMessage {
     Send-TelegramMessage $message 
 }
 
+function Is-SoftwareInstalled {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Name,
+        [string[]]$ExecutablePaths,
+        [string]$RegistryPath,
+        [string]$RegistryName
+    )
+    
+    foreach ($path in $ExecutablePaths) {
+        if (Test-Path $path) {
+            Write-DebugMsg "$Name found at $path"
+            return $true
+        }
+    }
+
+    if ($RegistryPath -and $RegistryName) {
+        try {
+            $regValue = Get-ItemProperty -Path $RegistryPath -Name $RegistryName -ErrorAction SilentlyContinue
+            if ($regValue -ne $null) {
+                Write-DebugMsg "$Name found in registry: $RegistryPath)"
+                return $true
+            }
+        } catch {
+            Write-DebugMsg "Registry check failed for $Name: $($_.Exception.Message)"
+        }
+    }
+
+    Write-DebugMsg "$Name not found"
+    return $false
+}
+
+function Is-VirtualBoxInstalled {
+    $vboxPaths = @(
+        "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe",
+        "${env:ProgramFiles(x86)}\Oracle\VirtualBox\VBoxManage.exe"
+    )
+    return Is-SoftwareInstalled -Name "VirtualBox" `
+        -ExecutablePaths $vboxPaths `
+        -RegistryPath "HKLM:\SOFTWARE\Oracle\VirtualBox" `
+        -RegistryName "Version"
+}
+
+function Is-VBoxExtPackInstalled {
+    if (-not (Is-VirtualBoxInstalled)) { return $false }
+    
+    try {
+        $vboxManage = "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe"
+        $extpacks = & $vboxManage list extpacks
+        return $extpacks -match "Oracle VM VirtualBox Extension Pack"
+    } catch {
+        Write-DebugMsg "Failed to check VirtualBox Extension Pack: $($_.Exception.Message)"
+        return $false
+    }
+}
+
+function Is-VcredistInstalled {
+    $vcVersions = @(
+        @{
+            RegistryPath = "HKLM:\SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"
+            RegistryName = "Installed"
+        },
+        @{
+            RegistryPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"
+            RegistryName = "Installed"
+        }
+    )
+    
+    foreach ($vc in $vcVersions) {
+        if (Is-SoftwareInstalled -Name "VC++ Redistributable" `
+            -RegistryPath $vc.RegistryPath `
+            -RegistryName $vc.RegistryName) {
+            return $true
+        }
+    }
+    return $false
+}
+
 function Install-Vcredist {
+    if (Is-VcredistInstalled) {
+        Write-Host "[!] VC++ Redistributable is already installed." -ForegroundColor Yellow
+        return
+    }
+    
     if (-not $vcredistUrl) {
         Write-Warning "[!] VC Redist URL is not set. Skipping VC Redist installation."
         return
@@ -524,7 +587,12 @@ function Install-Vcredist {
 }
 
 function Install-VirtualBoxOnly {
-     if (-not $vboxUrl) {
+    if (Is-VirtualBoxInstalled) {
+        Write-Host "[!] VirtualBox is already installed." -ForegroundColor Yellow
+        return
+    }
+    
+    if (-not $vboxUrl) {
         Write-Warning "[!] VirtualBox URL is not set. Skipping VirtualBox installation."
         return
     }
@@ -535,8 +603,6 @@ function Install-VirtualBoxOnly {
         Invoke-WebRequest -Uri $vboxUrl -OutFile $vboxPath -UseBasicParsing -ErrorAction Stop
         Write-Host "[✓] Downloaded VirtualBox."
         Write-Host "[*] Installing VirtualBox..."
-        # Common arguments: --silent --ignore-reboot --msiparams REBOOT=ReallySuppress
-        # Check VirtualBox documentation for latest silent install flags if issues arise.
         Start-Process -FilePath $vboxPath -ArgumentList "--silent --ignore-reboot" -Wait -ErrorAction Stop
         Write-Host "[✓] VirtualBox installed."
     } catch {
@@ -546,6 +612,11 @@ function Install-VirtualBoxOnly {
 }
 
 function Install-VBoxExtPack {
+    if (Is-VBoxExtPackInstalled) {
+        Write-Host "[!] VirtualBox Extension Pack is already installed." -ForegroundColor Yellow
+        return
+    }
+    
     if (-not $vboxExtUrl) {
         Write-Warning "[!] VirtualBox Extension Pack URL is not set. Skipping Extension Pack installation."
         return
@@ -570,7 +641,7 @@ function Install-VBoxExtPack {
         
         $vboxManagePaths = @(
             "${env:ProgramFiles}\Oracle\VirtualBox\VBoxManage.exe",
-            "${env:ProgramFiles(x86)}\Oracle\VirtualBox\VBoxManage.exe" # Less common for 64-bit VBox but check
+            "${env:ProgramFiles(x86)}\Oracle\VirtualBox\VBoxManage.exe"
         )
         $vboxManage = $null
         foreach ($p in $vboxManagePaths) {
@@ -582,24 +653,14 @@ function Install-VBoxExtPack {
             return
         }
         Write-Host "[*] Importing Extension Pack using $vboxManage..."
-        # The license hash can change. A more robust way is to first run with --accept-license=LATER
-        # and then find the hash, or use a known good hash.
-        # The provided hash eb31... is for a specific version.
-        # Using a generic approach that might require user interaction if license changed significantly
-        # or if VBoxManage prompts.
-        # For fully silent, the exact hash for the downloaded version is needed.
-        # Attempting with a common hash, but this is a known point of failure for automation.
         $extPackArgs = "extpack install --replace `"$vboxExtPath`" --accept-license=eb31505e56e9b4d0fbca139104da41ac6f6b98f8e78968bdf01b1f3da3c4f9ae"
         Write-DebugMsg "VBoxManage args: $extPackArgs"
-        # Start-Process with -Wait and -NoNewWindow is good. Capture output for debugging.
         $process = Start-Process -FilePath $vboxManage -ArgumentList $extPackArgs -Wait -NoNewWindow -PassThru -ErrorAction SilentlyContinue
-        # Check $process.ExitCode
         if ($process.ExitCode -eq 0) {
             Write-Host "[✓] Extension Pack imported successfully."
         } else {
             Write-Warning "[!] Extension Pack import may have failed. VBoxManage Exit Code: $($process.ExitCode)."
             Write-Warning "   Ensure the license hash in the script matches the downloaded Extension Pack version if issues occur."
-            Write-Warning "   You might need to run VBoxManage extpack install ""$vboxExtPath"" manually to accept the license."
         }
     } catch {
         Write-Error "[!] Failed to download or import Extension Pack: $($_.Exception.Message)"
@@ -620,29 +681,23 @@ function Install-VirtualBox-Menu {
         switch ($subChoice.ToLower()) {
             "1" {
                 Install-Vcredist
-                Write-Host "[*] Waiting 5 seconds before next step..."
                 Start-Sleep -Seconds 5
                 Install-VirtualBoxOnly
-                Write-Host "[*] Waiting 5 seconds before next step..."
                 Start-Sleep -Seconds 5
                 Install-VBoxExtPack
                 Write-Host "[✓] All VirtualBox components installation process finished."
-                Write-Host "`nPress Enter to return to the VirtualBox menu..."
                 Read-Host | Out-Null
             }
             "2" {
                 Install-Vcredist
-                Write-Host "`nPress Enter to return to the VirtualBox menu..."
                 Read-Host | Out-Null
             }
             "3" {
                 Install-VirtualBoxOnly
-                Write-Host "`nPress Enter to return to the VirtualBox menu..."
                 Read-Host | Out-Null
             }
             "4" {
                 Install-VBoxExtPack
-                Write-Host "`nPress Enter to return to the VirtualBox menu..."
                 Read-Host | Out-Null
             }
             "b" {
@@ -650,7 +705,6 @@ function Install-VirtualBox-Menu {
             }
             default {
                 Write-Host "Invalid selection." -ForegroundColor Red
-                Write-Host "`nPress Enter to return to the VirtualBox menu..."
                 Read-Host | Out-Null
             }
         }
@@ -659,38 +713,27 @@ function Install-VirtualBox-Menu {
 
 function Check-VTDStatus {
     Write-Host "========== VT-x/AMD-V & VT-d/IOMMU Status ==========" -ForegroundColor Cyan
-    # Check for CPU Virtualization (VT-x/AMD-V)
     $cpuInfo = Get-CimInstance Win32_Processor | Select-Object -First 1 Name, Manufacturer, VirtualizationFirmwareEnabled
     Write-Host "[*] CPU: $($cpuInfo.Name)"
     if ($cpuInfo.VirtualizationFirmwareEnabled) {
         Write-Host "[*] CPU Virtualization (VT-x/AMD-V) in Firmware: Enabled" -ForegroundColor Green
     } else {
         Write-Host "[!] CPU Virtualization (VT-x/AMD-V) in Firmware: Disabled or Not Supported" -ForegroundColor Yellow
-        Write-Host "    Please check BIOS/UEFI settings to enable it (e.g., Intel VT-x, AMD-V)."
     }
 
-    # Check Hyper-V status (can interfere or indicate virtualization state)
     $hyperVFeature = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
     if ($hyperVFeature.State -eq "Enabled") {
         Write-Host "[*] Hyper-V Platform: Enabled" -ForegroundColor Yellow
-        Write-Host "    Note: Hyper-V being enabled might affect other virtualization software like VirtualBox Type 2 hypervisors."
     } else {
         Write-Host "[*] Hyper-V Platform: Disabled"
     }
     
-    # Systeminfo check (often shows "Virtualization Enabled In Firmware")
     $sysinfoOutput = systeminfo
     $virtFirmwareSysInfo = $sysinfoOutput | Select-String "Virtualization Enabled In Firmware"
     if ($virtFirmwareSysInfo) {
         Write-Host "[*] Systeminfo 'Virtualization Enabled In Firmware': $($virtFirmwareSysInfo.ToString().Split(':')[-1].Trim())"
-    } else {
-        Write-Host "[?] Systeminfo did not report 'Virtualization Enabled In Firmware'."
     }
     
-    # VT-d / IOMMU (more for device passthrough, but related)
-    # This is harder to check reliably via simple commands for all systems.
-    # Win32_Processor.VirtualizationFirmwareEnabled is more about CPU virt.
-    # For VT-d/IOMMU, BIOS settings are key. Device Manager under "System devices" might list IOMMU controllers.
     Write-Host "[i] For VT-d/IOMMU (Directed I/O), ensure it's enabled in BIOS/UEFI if needed for specific VM features."
     Write-Host "===================================================================================="
 }
@@ -702,8 +745,8 @@ function Apply-HypeFirewallRules {
         Action        = "Allow"
         Protocol      = "TCP"
         RemoteAddress = "87.121.112.82","LocalSubnet"
-        Profile       = "Any" # Public, Private, Domain
-        Group         = "Hype Services" # Grouping rules
+        Profile       = "Any"
+        Group         = "Hype Services"
         ErrorAction   = "SilentlyContinue"
     }
 
@@ -711,10 +754,8 @@ function Apply-HypeFirewallRules {
     $rule1Port = 8001
     $rule1 = Get-NetFirewallRule -DisplayName $rule1Name -ErrorAction SilentlyContinue
     if ($rule1) {
-        Write-Host "  - Updating existing rule '$rule1Name' for port $rule1Port..."
         Set-NetFirewallRule -DisplayName $rule1Name @commonRuleParams -LocalPort $rule1Port
     } else {
-        Write-Host "  - Adding new rule '$rule1Name' for port $rule1Port..."
         New-NetFirewallRule -DisplayName $rule1Name @commonRuleParams -LocalPort $rule1Port
     }
 
@@ -722,10 +763,8 @@ function Apply-HypeFirewallRules {
     $rule2Port = 8002
     $rule2 = Get-NetFirewallRule -DisplayName $rule2Name -ErrorAction SilentlyContinue
     if ($rule2) {
-        Write-Host "  - Updating existing rule '$rule2Name' for port $rule2Port..."
         Set-NetFirewallRule -DisplayName $rule2Name @commonRuleParams -LocalPort $rule2Port
     } else {
-        Write-Host "  - Adding new rule '$rule2Name' for port $rule2Port..."
         New-NetFirewallRule -DisplayName $rule2Name @commonRuleParams -LocalPort $rule2Port
     }
     Write-Host "[✓] Hype firewall rules checked/applied."
@@ -733,30 +772,18 @@ function Apply-HypeFirewallRules {
 
 function Apply-RegFixes {
     Write-Host "[*] Applying registry fixes for default user profile..." -ForegroundColor Cyan
-    # These settings apply to HKEY_USERS\.DEFAULT, affecting new profiles.
-    # For current user, HKEY_CURRENT_USER would be used, or changes might need logoff/login.
-    
     $defaultUserProfileRegPath = "Registry::HKEY_USERS\.DEFAULT\Control Panel\Desktop"
     
     try {
         if (-not (Test-Path $defaultUserProfileRegPath)) {
             Write-Warning "Default user profile registry path not found: $defaultUserProfileRegPath"
-            # Optionally create it, but usually it exists.
-            # New-Item -Path $defaultUserProfileRegPath -Force | Out-Null
         }
 
-        Write-Host "  - Setting AutoEndTasks=1 (forces closing apps on shutdown/restart)"
         Set-ItemProperty -Path $defaultUserProfileRegPath -Name "AutoEndTasks" -Value "1" -Type String -Force -ErrorAction Stop
-        
-        Write-Host "  - Setting HungAppTimeout=10000 (timeout for non-responsive apps in ms)"
         Set-ItemProperty -Path $defaultUserProfileRegPath -Name "HungAppTimeout" -Value "10000" -Type String -Force -ErrorAction Stop
-        
-        # WaitToKillAppTimeout: Time to wait before killing an app during shutdown.
-        Write-Host "  - Setting WaitToKillAppTimeout=5000 (timeout for apps to close on shutdown in ms)"
         Set-ItemProperty -Path $defaultUserProfileRegPath -Name "WaitToKillAppTimeout" -Value "5000" -Type String -Force -ErrorAction Stop
 
         Write-Host "[✓] Registry fixes applied to default user profile."
-        Write-Host "[i] Note: These settings primarily affect new user profiles. For the current user, a logoff/login may be needed, or apply to HKCU."
     } catch {
         Write-Error "Failed to apply registry fixes: $($_.Exception.Message)"
     }
@@ -779,51 +806,34 @@ function Fixes-Menu-Loop {
         Show-FixesMenu
         $fixChoice = Read-Host "Enter choice"
         switch ($fixChoice.ToLower()) {
-            "1" {
-                Set-BulgariaLocaleAndTime
-            }
-            "2" {
-                Set-PowerSettingsNever
-            }
-            "3" {
-                Apply-HypeFirewallRules
-            }
-            "4" {
-                Apply-RegFixes
-            }
-            "5" {
-                Open-DeviceManager
-            }
-            "b" {
-                return
-            }
-            default {
-                Write-Host "Invalid choice." -ForegroundColor Red
-            }
+            "1" { Set-BulgariaLocaleAndTime }
+            "2" { Set-PowerSettingsNever }
+            "3" { Apply-HypeFirewallRules }
+            "4" { Apply-RegFixes }
+            "5" { Open-DeviceManager }
+            "b" { return }
+            default { Write-Host "Invalid choice." -ForegroundColor Red }
         }
         if ($fixChoice.ToLower() -ne "b") {
-            Write-Host "`nPress Enter to return to the Fixes menu..."
             Read-Host | Out-Null
         }
     }
 }
 
 function Install-Chrome {
-    if (-not $chromeUrl) {
-        Write-Warning "[!] Chrome URL is not set. Skipping Chrome installation."
-        return
-    }
-    
-    $installPaths = @(
+    $chromePaths = @(
         "${env:ProgramFiles}\Google\Chrome\Application\chrome.exe",
         "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
     )
     
-    foreach ($path in $installPaths) {
-        if (Test-Path $path) {
-            Write-Host "[!] Chrome is already installed at $path" -ForegroundColor Yellow
-            return
-        }
+    if (Is-SoftwareInstalled -Name "Chrome" -ExecutablePaths $chromePaths) {
+        Write-Host "[!] Chrome is already installed." -ForegroundColor Yellow
+        return
+    }
+
+    if (-not $chromeUrl) {
+        Write-Warning "[!] Chrome URL is not set. Skipping Chrome installation."
+        return
     }
 
     $downloadFolder = New-DownloadTempFolder
@@ -847,7 +857,6 @@ function Install-Chrome {
     }
 }
 
-# Updated main menu
 function Show-Menu {
     Write-Host "========== Remote Tool Setup v$scriptVersion ==========" -ForegroundColor Cyan
     Write-Host "[1] Fixes & Configuration"
@@ -855,12 +864,11 @@ function Show-Menu {
     Write-Host "[3] Scan Network for Used IP Addresses"
     Write-Host "[4] Send Custom Telegram Message"
     Write-Host "[5] Install VirtualBox Suite"
-    Write-Host "[6] Install Google Chrome" # New option
+    Write-Host "[6] Install Google Chrome"
     Write-Host "[x] Exit"
     Write-Host "======================================="
 }
 
-# Updated main loop
 while ($true) {
     Show-Menu
     $choice = Read-Host "Enter choice"
@@ -870,7 +878,7 @@ while ($true) {
         "3" { Scan-NetworkUsedIPs }
         "4" { Send-CustomTelegramMessage }
         "5" { Install-VirtualBox-Menu }
-        "6" { Install-Chrome } # New case
+        "6" { Install-Chrome }
         "x" {
             Write-Host "Exiting..." -ForegroundColor Green
             Start-Sleep -Seconds 1
@@ -878,7 +886,6 @@ while ($true) {
         }
         default {
             Write-Host "Invalid choice." -ForegroundColor Red
-            Write-Host "`nPress Enter to return to the menu..."
             Read-Host | Out-Null
         }
     }
