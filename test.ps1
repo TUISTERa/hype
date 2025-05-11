@@ -15,7 +15,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.4" # Updated version for Chrome addition
+$scriptVersion = "1.0.5" # Updated version for Chrome addition
 
 # =========================
 #   WELCOME MESSAGE
