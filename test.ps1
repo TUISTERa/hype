@@ -21,7 +21,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.12" # Updated version for Chrome addition
+$scriptVersion = "1.0.13" # Updated version for Chrome addition
 
 
 
@@ -970,7 +970,7 @@ while ($true) {
         "x" {
             Write-Host "Exiting..." -ForegroundColor Green
             Start-Sleep -Seconds 1
-            break
+            exit 0
         }
         default {
             Write-Host "Invalid choice." -ForegroundColor Red
