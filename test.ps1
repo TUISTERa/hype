@@ -21,7 +21,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.11" # Updated version for Chrome addition
+$scriptVersion = "1.0.12" # Updated version for Chrome addition
 
 
 
@@ -806,8 +806,6 @@ function Fixes-Menu-Loop {
 # =========================
 #   HYPE TOOLS SUBMENU
 # =========================
-
-
 function Install-HypeTool {
     param(
         [Parameter(Mandatory)]
@@ -833,7 +831,7 @@ function Install-HypeTool {
     } catch {
         $err = $_
         $errMsg = $err.Exception.Message
-        Write-Error "Failed to download $ToolName: $errMsg"
+        Write-Error ('Failed to download ' + $ToolName + ': ' + $errMsg)
         return
     }
     Write-Host "[+] Installing $ToolName..."
@@ -843,7 +841,7 @@ function Install-HypeTool {
     } catch {
         $err = $_
         $errMsg = $err.Exception.Message
-        Write-Error "Failed to install $ToolName: $errMsg"
+        Write-Error ('Failed to install ' + $ToolName + ': ' + $errMsg)
     }
 }
 
