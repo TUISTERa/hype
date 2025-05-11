@@ -15,19 +15,8 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.5" # Updated version for Chrome addition
+$scriptVersion = "1.0.6" # Updated version for Chrome addition
 
-# =========================
-#   WELCOME MESSAGE
-# =========================
-Write-Host "========================================="
-Write-Host " Welcome to the Remote Tool Setup Script"
-Write-Host "  For support or questions, contact IT. v$scriptVersion "
-Write-Host "  WARNING: This version uses plaintext secrets."
-Write-Host "=========================================" -ForegroundColor Cyan
-
-# Run VT check once at startup
-Check-VTDStatus
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -846,6 +835,19 @@ function Install-Chrome {
         Write-Error "Failed to install Chrome: $($_.Exception.Message)"
     }
 }
+
+
+# =========================
+#   WELCOME MESSAGE
+# =========================
+Write-Host "========================================="
+Write-Host " Welcome to the Remote Tool Setup Script"
+Write-Host "  For support or questions, contact IT. v$scriptVersion "
+Write-Host "  WARNING: This version uses plaintext secrets."
+Write-Host "=========================================" -ForegroundColor Cyan
+
+# Run VT check once at startup
+Check-VTDStatus
 
 # Updated main menu
 function Show-Menu {
