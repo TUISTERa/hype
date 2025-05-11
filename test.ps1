@@ -9,13 +9,18 @@ $vcredistUrl = $baseUrl + "vcredistx64.exe"
 $vboxUrl = $baseUrl + "virtualbox.exe"
 $vboxExtUrl = $baseUrl + "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
 $chromeUrl = $baseUrl + "chrome.exe" # Added Chrome URL
+# Define URLs for Hype tools
+$hypeBridgeUrl = $baseUrl + "hypebridge.exe"
+$hypeCrUrl     = $baseUrl + "hypecr.exe"
+$hypeKdsUrl    = $baseUrl + "hypekds.exe"
+$hypeClientUrl = $baseUrl + "hypeclient.exe"
 
 $anydeskPassword = "hype1234"
 $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.6" # Updated version for Chrome addition
+$scriptVersion = "1.0.7" # Updated version for Chrome addition
 
 
 # =========================
@@ -796,6 +801,89 @@ function Fixes-Menu-Loop {
         }
     }
 }
+# =========================
+#   HYPE TOOLS SUBMENU
+# =========================
+
+
+function Install-HypeTool {
+    param(
+        [Parameter(Mandatory)]
+        [string]$ToolName,
+        [Parameter(Mandatory)]
+        [string]$ToolUrl
+    )
+    $installPaths = @(
+        "${env:ProgramFiles}\Hype\$ToolName.exe",
+        "${env:ProgramFiles(x86)}\Hype\$ToolName.exe"
+    )
+    foreach ($path in $installPaths) {
+        if (Test-Path $path) {
+            Write-Host "[!] $ToolName is already installed at $path" -ForegroundColor Yellow
+            return
+        }
+    }
+    $downloadFolder = New-DownloadTempFolder
+    $installerPath = Join-Path $downloadFolder "$ToolName.exe"
+    Write-Host "[+] Downloading $ToolName from $ToolUrl..."
+    try {
+        Invoke-WebRequest -Uri $ToolUrl -OutFile $installerPath -ErrorAction Stop
+    } catch {
+        Write-Error "Failed to download $ToolName: $($_.Exception.Message)"
+        return
+    }
+    Write-Host "[+] Installing $ToolName..."
+    try {
+        Start-Process -FilePath $installerPath -ArgumentList "/silent", "/install" -Wait -ErrorAction Stop
+        Write-Host "[✓] $ToolName installed successfully."
+    } catch {
+        Write-Error "Failed to install $ToolName: $($_.Exception.Message)"
+    }
+}
+
+function Show-HypeMenu {
+    while ($true) {
+        Write-Host ""
+        Write-Host "========== Hype Tools Menu ==========" -ForegroundColor Cyan
+        Write-Host "[1] Download & Install HypeBridge"
+        Write-Host "[2] Download & Install HypeCR"
+        Write-Host "[3] Download & Install HypeKDS"
+        Write-Host "[4] Download & Install HypeClient"
+        Write-Host "[b] Back to main menu"
+        Write-Host "====================================="
+        $hypeChoice = Read-Host "Enter choice"
+        switch ($hypeChoice.ToLower()) {
+            "1" {
+                Install-HypeTool -ToolName "hypebridge" -ToolUrl $hypeBridgeUrl
+                Write-Host "`nPress Enter to return to the Hype menu..."
+                Read-Host | Out-Null
+            }
+            "2" {
+                Install-HypeTool -ToolName "hypecr" -ToolUrl $hypeCrUrl
+                Write-Host "`nPress Enter to return to the Hype menu..."
+                Read-Host | Out-Null
+            }
+            "3" {
+                Install-HypeTool -ToolName "hypekds" -ToolUrl $hypeKdsUrl
+                Write-Host "`nPress Enter to return to the Hype menu..."
+                Read-Host | Out-Null
+            }
+            "4" {
+                Install-HypeTool -ToolName "hypeclient" -ToolUrl $hypeClientUrl
+                Write-Host "`nPress Enter to return to the Hype menu..."
+                Read-Host | Out-Null
+            }
+            "b" {
+                return
+            }
+            default {
+                Write-Host "Invalid choice." -ForegroundColor Red
+                Write-Host "`nPress Enter to return to the Hype menu..."
+                Read-Host | Out-Null
+            }
+        }
+    }
+}
 
 function Install-Chrome {
     if (-not $chromeUrl) {
@@ -857,7 +945,8 @@ function Show-Menu {
     Write-Host "[3] Scan Network for Used IP Addresses"
     Write-Host "[4] Send Custom Telegram Message"
     Write-Host "[5] Install VirtualBox Suite"
-    Write-Host "[6] Install Google Chrome" # New option
+    Write-Host "[6] Install Google Chrome" 
+    Write-Host "[7] Hype Tools" # New option
     Write-Host "[x] Exit"
     Write-Host "======================================="
 }
@@ -872,7 +961,8 @@ while ($true) {
         "3" { Scan-NetworkUsedIPs }
         "4" { Send-CustomTelegramMessage }
         "5" { Install-VirtualBox-Menu }
-        "6" { Install-Chrome } # New case
+        "6" { Install-Chrome } 
+        "7" { Show-HypeMenu } # New case
         "x" {
             Write-Host "Exiting..." -ForegroundColor Green
             Start-Sleep -Seconds 1
