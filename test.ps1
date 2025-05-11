@@ -1,3 +1,5 @@
+#powershell version 5.1 
+
 # =========================
 #      CONFIG (PLAINTEXT)
 # =========================
@@ -9,7 +11,6 @@ $vcredistUrl = $baseUrl + "vcredistx64.exe"
 $vboxUrl = $baseUrl + "virtualbox.exe"
 $vboxExtUrl = $baseUrl + "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
 $chromeUrl = $baseUrl + "chrome.exe" # Added Chrome URL
-# Define URLs for Hype tools
 $hypeBridgeUrl = $baseUrl + "hypebridge.exe"
 $hypeCrUrl     = $baseUrl + "hypecr.exe"
 $hypeKdsUrl    = $baseUrl + "hypekds.exe"
@@ -20,7 +21,8 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.8" # Updated version for Chrome addition
+$scriptVersion = "1.0.9" # Updated version for Chrome addition
+
 
 
 # =========================
@@ -829,7 +831,8 @@ function Install-HypeTool {
     try {
         Invoke-WebRequest -Uri $ToolUrl -OutFile $installerPath -ErrorAction Stop
     } catch {
-        Write-Error "Failed to download $ToolName: $($_.Exception.Message)"
+        $err = $_
+        Write-Error "Failed to download $ToolName: $($err.Exception.Message)"
         return
     }
     Write-Host "[+] Installing $ToolName..."
@@ -837,7 +840,8 @@ function Install-HypeTool {
         Start-Process -FilePath $installerPath -ArgumentList "/silent", "/install" -Wait -ErrorAction Stop
         Write-Host "[✓] $ToolName installed successfully."
     } catch {
-        Write-Error "Failed to install $ToolName: $($_.Exception.Message)"
+        $err = $_
+        Write-Error "Failed to install $ToolName: $($err.Exception.Message)"
     }
 }
 
