@@ -20,7 +20,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.7" # Updated version for Chrome addition
+$scriptVersion = "1.0.8" # Updated version for Chrome addition
 
 
 # =========================
@@ -369,7 +369,7 @@ function Scan-NetworkUsedIPs {
         $jobs += Start-Job -ScriptBlock {
             param($targetToPing) 
             # Using Test-Connection as it's a PowerShell cmdlet, more robust than parsing ping.exe
-            if (Test-Connection -ComputerName $targetToPing -Count 1 -TimeoutSeconds 1 -Quiet) {
+            if (Test-Connection -ComputerName $targetToPing -Count 3  -Quiet) {
                 $hostname = try { (Resolve-DnsName -Name $targetToPing -Type A -ErrorAction SilentlyContinue).NameHost } catch { "" }
                 if (-not $hostname) {
                     try { $hostname = ([System.Net.Dns]::GetHostEntry($targetToPing).HostName) } catch { $hostname = "N/A" }
