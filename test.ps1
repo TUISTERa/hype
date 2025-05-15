@@ -22,7 +22,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.16" # Updated version for Chrome addition
+$scriptVersion = "1.0.17" # Updated version for Chrome addition
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -807,6 +807,7 @@ function Fixes-Menu-Loop {
 #   HYPE TOOLS SUBMENU
 # =========================
 
+
 function Install-HypeTool {
     param(
         [Parameter(Mandatory)]
@@ -825,7 +826,22 @@ function Install-HypeTool {
         }
     }
     $downloadFolder = New-DownloadTempFolder
-    $installerPath = Join-Path $downloadFolder "$ToolName.exe"
+
+    # Extract file extension from URL
+    try {
+        $uriObj = [System.Uri]$ToolUrl
+        $fileNameFromUrl = [System.IO.Path]::GetFileName($uriObj.LocalPath)
+        if ($fileNameFromUrl -and $fileNameFromUrl.Contains('.')) {
+            $installerFileName = $fileNameFromUrl
+        } else {
+            # Fallback to .exe if extension is missing
+            $installerFileName = "$ToolName.exe"
+        }
+    } catch {
+        $installerFileName = "$ToolName.exe"
+    }
+
+    $installerPath = Join-Path $downloadFolder $installerFileName
     Write-Host "[+] Downloading $ToolName from $ToolUrl..."
     try {
         Invoke-WebRequest -Uri $ToolUrl -OutFile $installerPath -ErrorAction Stop
@@ -836,8 +852,15 @@ function Install-HypeTool {
         return
     }
     Write-Host "[+] Installing $ToolName..."
+
+    # Determine installer type and install accordingly
+    $extension = [System.IO.Path]::GetExtension($installerPath).ToLower()
     try {
-        Start-Process -FilePath $installerPath -ArgumentList "/silent", "/install" -Wait -ErrorAction Stop
+        if ($extension -eq ".msi") {
+            Start-Process -FilePath "msiexec.exe" -ArgumentList "/i", "`"$installerPath`"", "/quiet", "/norestart" -Wait -ErrorAction Stop
+        } else {
+            Start-Process -FilePath $installerPath -ArgumentList "/silent", "/install" -Wait -ErrorAction Stop
+        }
         Write-Host "[✓] $ToolName installed successfully."
     } catch {
         $err = $_
