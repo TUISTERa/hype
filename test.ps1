@@ -1,3 +1,4 @@
+
 #powershell version 5.1 
 
 # =========================
@@ -10,7 +11,7 @@ $anydeskUrl = $baseUrl + "anydesk.exe"
 $vcredistUrl = $baseUrl + "vcredistx64.exe"
 $vboxUrl = $baseUrl + "virtualbox.exe"
 $vboxExtUrl = $baseUrl + "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
-$chromeUrl = $baseUrl + "chrome.exe" # Added Chrome URL
+$chromeUrl = $baseUrl + "chrome.msi" # Added Chrome URL
 $hypeBridgeUrl = $baseUrl + "hypebridge.exe"
 $hypeCrUrl     = $baseUrl + "hypecr.exe"
 $hypeKdsUrl    = $baseUrl + "hypekds.exe"
@@ -23,8 +24,6 @@ $telegramChatId = "456050407"
 $debugMode = $false
 $scriptVersion = "1.0.13" # Updated version for Chrome addition
 
-
-
 # =========================
 #      MAIN SCRIPT LOGIC
 # =========================
@@ -35,7 +34,7 @@ function Write-DebugMsg($msg) {
 
 function New-DownloadTempFolder {
     $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-    $folder = Join-Path $env:TEMP "hypd_download_$timestamp"
+    $folder = Join-Path $env:TEMP "itpremium_download_$timestamp"
     if (Test-Path $folder) {
         Remove-Item -Path $folder -Recurse -Force
     }
@@ -803,9 +802,11 @@ function Fixes-Menu-Loop {
         }
     }
 }
+
 # =========================
 #   HYPE TOOLS SUBMENU
 # =========================
+
 function Install-HypeTool {
     param(
         [Parameter(Mandatory)]
@@ -845,6 +846,25 @@ function Install-HypeTool {
     }
 }
 
+function Add-TestScriptToStartup {
+    # Get the full path to the current script
+    $scriptPath = $MyInvocation.MyCommand.Path
+
+    # Get the user's Startup folder
+    $startupFolder = [Environment]::GetFolderPath('Startup')
+    $batFile = Join-Path $startupFolder "Run-TestScript.bat"
+
+    # Prepare the batch file content
+    $batContent = "@echo off`r`n" +
+                  "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$scriptPath`""
+
+    # Write the batch file
+    Set-Content -Path $batFile -Value $batContent -Encoding ASCII
+
+    Write-Host "[✓] Startup batch file created at: $batFile"
+    Write-Host "The script will now run automatically at user login."
+}
+
 function Show-HypeMenu {
     while ($true) {
         Write-Host ""
@@ -853,6 +873,7 @@ function Show-HypeMenu {
         Write-Host "[2] Download & Install HypeCR"
         Write-Host "[3] Download & Install HypeKDS"
         Write-Host "[4] Download & Install HypeClient"
+        Write-Host "[5] STARTUP INSTALL (Run this script at login)" # New option
         Write-Host "[b] Back to main menu"
         Write-Host "====================================="
         $hypeChoice = Read-Host "Enter choice"
@@ -874,6 +895,11 @@ function Show-HypeMenu {
             }
             "4" {
                 Install-HypeTool -ToolName "hypeclient" -ToolUrl $hypeClientUrl
+                Write-Host "`nPress Enter to return to the Hype menu..."
+                Read-Host | Out-Null
+            }
+            "5" {
+                Add-TestScriptToStartup
                 Write-Host "`nPress Enter to return to the Hype menu..."
                 Read-Host | Out-Null
             }
@@ -927,7 +953,6 @@ function Install-Chrome {
         Write-Error "Failed to install Chrome: $($_.Exception.Message)"
     }
 }
-
 
 # =========================
 #   WELCOME MESSAGE
