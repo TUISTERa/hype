@@ -22,7 +22,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.15" # Updated version for Chrome addition
+$scriptVersion = "1.0.16" # Updated version for Chrome addition
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -846,7 +846,7 @@ function Install-HypeTool {
     }
 }
 
-function Add-TestScriptToStartup {
+function Add-HypeServerToStartup {
     # Get the full path to the current script
     $scriptPath = $MyInvocation.MyCommand.Path
 
@@ -874,7 +874,7 @@ function Show-HypeMenu {
         Write-Host "[2] Download & Install HypeCR"
         Write-Host "[3] Download & Install HypeKDS"
         Write-Host "[4] Download & Install HypeClient"
-        Write-Host "[5] STARTUP INSTALL (Run this script at login)" # New option
+        Write-Host "[5] Install HypeServer.Bat at startup" # New option
         Write-Host "[b] Back to main menu"
         Write-Host "====================================="
         $hypeChoice = Read-Host "Enter choice"
@@ -900,7 +900,7 @@ function Show-HypeMenu {
                 Read-Host | Out-Null
             }
             "5" {
-                Add-TestScriptToStartup
+                Add-HypeServerToStartup
                 Write-Host "`nPress Enter to return to the Hype menu..."
                 Read-Host | Out-Null
             }
