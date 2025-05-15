@@ -13,7 +13,7 @@ $vboxUrl = $baseUrl + "virtualbox.exe"
 $vboxExtUrl = $baseUrl + "Oracle_VirtualBox_Extension_Pack-7.1.6.vbox-extpack"
 $chromeUrl = $baseUrl + "chrome.msi" # Added Chrome URL
 $hypeBridgeUrl = $baseUrl + "hypebridge.exe"
-$hypeCrUrl     = $baseUrl + "hypecr.exe"
+$hypeCrUrl     = $baseUrl + "hypecr.msi"
 $hypeKdsUrl    = $baseUrl + "hypekds.exe"
 $hypeClientUrl = $baseUrl + "hypeclient.exe"
 
@@ -22,7 +22,7 @@ $telegramBotToken = "5713387645:AAEnE0skfvLy5FmTRs0RwX9gLz9avFj72Wk"
 $telegramChatId = "456050407"
 
 $debugMode = $false
-$scriptVersion = "1.0.13" # Updated version for Chrome addition
+$scriptVersion = "1.0.15" # Updated version for Chrome addition
 
 # =========================
 #      MAIN SCRIPT LOGIC
@@ -852,11 +852,12 @@ function Add-TestScriptToStartup {
 
     # Get the user's Startup folder
     $startupFolder = [Environment]::GetFolderPath('Startup')
-    $batFile = Join-Path $startupFolder "Run-TestScript.bat"
+    $batFile = Join-Path $startupFolder "hypeserver.bat"
 
     # Prepare the batch file content
     $batContent = "@echo off`r`n" +
-                  "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$scriptPath`""
+                  '"%programfiles%\Oracle\VirtualBox\VBoxManage.exe" startvm HypeServer64 --type headless'
+
 
     # Write the batch file
     Set-Content -Path $batFile -Value $batContent -Encoding ASCII
